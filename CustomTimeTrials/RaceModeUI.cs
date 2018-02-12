@@ -44,15 +44,28 @@ namespace CustomTimeTrials
         }
 
 
-        public void SetTime(int ms)
+        public string GetTimeAsString(int ms, bool includeMs=false)
         {
-            this.timeHud.Text = TimeSpan.FromMilliseconds(ms).ToString((@"mm\:ss"));
+            if (includeMs)
+            {
+                return TimeSpan.FromMilliseconds(ms).ToString((@"mm\:ss\:fff"));
+            }
+            else
+            {
+                return TimeSpan.FromMilliseconds(ms).ToString((@"mm\:ss"));
+            }
         }
 
 
-        public void ShowLargeMessage(string msg, int duration=5000)
+        public void SetTime(int ms)
         {
-            BigMessageThread.MessageInstance.ShowMissionPassedMessage(msg, duration);
+            this.timeHud.Text = this.GetTimeAsString(ms);
+        }
+
+
+        public void ShowLargeMessage(string title, string msg, int duration=5000)
+        {
+            BigMessageThread.MessageInstance.ShowSimpleShard(title, msg, duration);
         }
 
         public void ShowCountdown(int timeLeft)

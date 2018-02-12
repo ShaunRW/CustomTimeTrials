@@ -10,6 +10,7 @@ using GTA.Math;
 
 namespace CustomTimeTrials
 {
+
     class RaceMode : Mode
     {
         private RaceModeUI raceModeUI;
@@ -17,6 +18,7 @@ namespace CustomTimeTrials
 
         private Vector3 startingRotation;
 
+        private string raceName;
         private bool isCircuit;
         private int lapCount;
         private int currentLap;
@@ -28,9 +30,14 @@ namespace CustomTimeTrials
 
         private bool countingDown;
         private int startingTime;
+        private int elapsedTime
+        {
+            get { return Game.GameTime - this.startingTime; }
+        }
 
         public RaceMode(string raceName, int laps, KeyPressTracker keyPressTracker) : base(keyPressTracker)
         {
+            this.raceName = System.IO.Path.GetFileNameWithoutExtension(raceName);
             if (Game.Player.Character.IsSittingInVehicle())
             {
                 if (this.LoadRace("scripts/TimeTrials/" + raceName))
@@ -136,8 +143,14 @@ namespace CustomTimeTrials
 
         private void EndRace()
         {
-            this.raceModeUI.ShowLargeMessage("Finished");
-            // TODO: Do something with the finalised time.
+            string finalTime = this.raceModeUI.GetTimeAsString(this.elapsedTime, true);
+            string laps = (this.isCircuit) ? string.Format("  Laps: ~b~{0}\n~w~", this.lapCount) : "";
+
+            this.raceModeUI.ShowLargeMessage("Finished", finalTime);
+
+            string notification = string.Format("{0}:\n{1}  Final Time: ~b~{2}", this.raceName, laps, finalTime);
+
+            UI.Notify(notification);
             this.ExitRace();
         }
 
@@ -154,7 +167,7 @@ namespace CustomTimeTrials
                 this.EndLap();
             }
 
-            this.raceModeUI.SetTime(Game.GameTime - this.startingTime);
+            this.raceModeUI.SetTime(this.elapsedTime);
         }
 
         private void ShowNextCheckpoint()
