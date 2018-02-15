@@ -68,47 +68,58 @@ namespace CustomTimeTrials
             BigMessageThread.MessageInstance.ShowSimpleShard(title, msg, duration);
         }
 
-        public void ShowCountdown(int timeLeft)
+        public bool ShowCountdown(int timeLeft)
         {
+            int stepNumber;
             if (timeLeft <= 0)
             {
-                this.ShowCountdownSeconds(0);
+                stepNumber = 0;
             }
-            else if (timeLeft <= 1000)
+            else if (timeLeft <= 1500)
             {
-                this.ShowCountdownSeconds(1);
-            }
-            else if (timeLeft <= 2000)
-            {
-                this.ShowCountdownSeconds(2);
+                stepNumber = 1;
             }
             else if (timeLeft <= 3000)
             {
-                this.ShowCountdownSeconds(3);
+                stepNumber = 2;
+            }
+            else if (timeLeft <= 4500)
+            {
+                stepNumber = 3;
             }
             else
             {
+                stepNumber = 5;
                 this.lastCountdownNumber = 4;
             }
+
+            bool displayed = this.ShowCountdownStep(stepNumber);
+            return displayed;
         }
 
-        public void ShowCountdownSeconds(int seconds, int duration = 1000)
+        private bool ShowCountdownStep(int number, int duration = 1000)
         {
-            if (this.lastCountdownNumber > seconds)
+            if (this.lastCountdownNumber > number)
             {
                 string text;
 
-                if (seconds == 0)
+                if (number == 0)
                 {
                     text = "GO";
                 }
                 else
                 {
-                    text = seconds.ToString();
+                    text = number.ToString();
                 }
 
                 BigMessageThread.MessageInstance.ShowOldMessage(text, duration);
-                this.lastCountdownNumber = seconds;
+                this.lastCountdownNumber = number;
+
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

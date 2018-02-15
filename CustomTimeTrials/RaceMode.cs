@@ -103,12 +103,19 @@ namespace CustomTimeTrials
 
         private void UpdateCountdown()
         {
-            int timeLeft = 5000 - (Game.GameTime - this.startingTime);
-            this.raceModeUI.ShowCountdown(timeLeft);
-            if (timeLeft <= 0)
+            int timeLeft = 6000 - (Game.GameTime - this.startingTime);
+            if (this.raceModeUI.ShowCountdown(timeLeft))
             {
-                this.EndCountdown();
+                if (timeLeft <= 0)
+                {
+                    this.EndCountdown();
+                }
+                else
+                {
+                    this.raceModeAudio.PlayCountdownBeep();
+                }
             }
+            
         }
 
         private void EndCountdown()
