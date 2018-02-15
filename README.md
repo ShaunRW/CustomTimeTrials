@@ -21,7 +21,9 @@ Adds a new time trial racing mode to GTA V. Also includes an editor to create th
 ### Todo:
 
 * Create a start race menu that can be accessed from the F9 menu. The items would be 'Start a Time Trial' and 'Create New Time Trial'
-* Add fastest times for each race and each lap setting.
+* Show time of current lap on the hud.
+* Show fastest laptime this race on the hud.
+* Record Race Results for stats purposes. Such as fasted time on this time trial.
 * Remove Falling out of cars when in race.
 * Make player invincable while in race.
 * Add Weather option before race.
