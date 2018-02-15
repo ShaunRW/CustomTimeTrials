@@ -14,6 +14,7 @@ namespace CustomTimeTrials
     class RaceMode : Mode
     {
         private RaceModeUI raceModeUI;
+        private RaceModeAudio raceModeAudio = new RaceModeAudio();
         private CheckpointManager checkpointManager = new CheckpointManager();
 
         private Vector3 startingRotation;
@@ -120,6 +121,7 @@ namespace CustomTimeTrials
         {
             this.startingTime = Game.GameTime;
             Game.Player.CanControlCharacter = true;
+            this.raceModeAudio.PlayRaceBeginSound();
         }
 
         private void AddLap()
@@ -133,10 +135,12 @@ namespace CustomTimeTrials
         {
             if (this.currentLap == this.lapCount)
             {
+                this.raceModeAudio.PlayRaceFinishedSound();
                 this.EndRace();
             }
             else
             {
+                this.raceModeAudio.PlayCheckpointReachedSound();
                 this.AddLap();
             }
         }
@@ -172,6 +176,7 @@ namespace CustomTimeTrials
 
         private void ShowNextCheckpoint()
         {
+            this.raceModeAudio.PlayCheckpointReachedSound();
             this.checkpointManager.TargetNext(this.isLastLap);
         }
 
