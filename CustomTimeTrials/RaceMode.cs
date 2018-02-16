@@ -38,10 +38,9 @@ namespace CustomTimeTrials
 
         public RaceMode(string raceName, int laps, KeyPressTracker keyPressTracker) : base(keyPressTracker)
         {
-            this.raceName = System.IO.Path.GetFileNameWithoutExtension(raceName);
             if (Game.Player.Character.IsSittingInVehicle())
             {
-                if (this.LoadRace("scripts/TimeTrials/" + raceName))
+                if (this.LoadRace(raceName))
                 {
                     this.SetupRace(laps);
                 }
@@ -211,9 +210,39 @@ namespace CustomTimeTrials
                 this.ExitRace();
             }
         }
-        
 
-        private bool LoadRace(string path)
+
+        private bool LoadRace(string raceName)
+        {
+            TimeTrialFile file = new TimeTrialFile();
+            file.load(raceName);
+
+            this.raceName = file.data.displayName;
+
+            if (file.data.type == "circuit")
+            {
+                this.isCircuit = true;
+            }
+            else
+            {
+                this.isCircuit = false;
+            }
+
+            this.startingRotation = file.data.start.rotation.ToGtaVector3();
+
+            var checkpointPositions = new List<Vector3>();
+            foreach(SimpleVector3 v3 in file.data.checkpoints)
+            {
+                checkpointPositions.Add(v3.ToGtaVector3());
+            }
+            this.checkpointManager.Load(checkpointPositions, this.isCircuit);
+
+
+            // load race was successful
+            return true;
+        }
+
+        private bool LoadRaceLagacy(string path)
         {
             string[] vectorsStr;
             var isFirstLine = true;

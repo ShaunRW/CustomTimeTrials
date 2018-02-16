@@ -53,7 +53,7 @@ namespace CustomTimeTrials
                 sender.Visible = false;
 
                 int laps = int.Parse(this.GetLapsOptions()[this.menuSelectedLapsIndex]);
-                string race = this.GetRaceList(true)[this.menuSelectedRaceIndex];
+                string race = this.GetRaceList(false)[this.menuSelectedRaceIndex];
                 
                 this.ChangeModeTo(new RaceMode(race, laps, this.KeyPress));
                 
