@@ -72,6 +72,31 @@ namespace CustomTimeTrials
 
         private void SaveRace()
         {
+            // intialize a new time trial file object
+            TimeTrialFile newFile = new TimeTrialFile();
+
+            // Ask the user to name the race.
+            newFile.data.displayName = Game.GetUserInput("Untitled Race", 40);
+
+            // Set whether the race is a circuit or sprint.
+            newFile.data.type = this.menu.GetSelectedType().ToLower();
+
+            // set the starting position and rotation
+            newFile.data.start.rotation = new SimpleVector3(this.startingRotation);
+            newFile.data.start.position = new SimpleVector3(this.checkpoints[0].position);
+
+            // set each checkpoint position.
+            foreach (Checkpoint cp in this.checkpoints)
+            {
+                newFile.data.checkpoints.Add(new SimpleVector3(cp.position));
+            }
+
+            // Save the data to the disk.
+            newFile.save();
+        }
+
+        private void SaveRaceLegacy()
+        {
             string name = Game.GetUserInput(40);
             UI.Notify("Saving "+name);
 

@@ -10,7 +10,10 @@ Adds a new time trial racing mode to GTA V. Also includes an editor to create th
 
 ### Installation:
 
-* Copy the CustomTimeTrials.dll and TimeTrails folder into the 'Grand Theft Auto V/scripts' directory.
+Copy the following items into the 'Grand Theft Auto V/scripts' directory.
+* CustomTimeTrials.dll file.
+* Newtonsoft.json.dll file.
+* TimeTrials folder.
 
 
 ### How to use:
