@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using GTA;
-
 using CustomTimeTrials.StateMachine;
 
 namespace CustomTimeTrials.TimeTrialState
@@ -126,6 +124,8 @@ namespace CustomTimeTrials.TimeTrialState
         private void onFinish()
         {
             // do something with the race data
+            string time = this.time.Format(true);
+            this.timeTrialUI.ShowFinishedScreen("Finished", time);
             this.audioManager.PlayRaceFinishedSound();
             this.newState = new InactiveState.InactiveState();
         }

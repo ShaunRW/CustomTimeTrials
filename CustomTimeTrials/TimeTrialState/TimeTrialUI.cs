@@ -50,5 +50,10 @@ namespace CustomTimeTrials.TimeTrialState
             string message = (countdownNumber == 0) ? "GO" : countdownNumber.ToString();
             BigMessageThread.MessageInstance.ShowOldMessage(message, duration);
         }
+
+        public void ShowFinishedScreen(string title, string msg, int duration = 5000)
+        {
+            BigMessageThread.MessageInstance.ShowSimpleShard(title, msg, duration);
+        }
     }
 }
