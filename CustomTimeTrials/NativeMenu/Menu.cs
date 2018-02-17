@@ -12,10 +12,21 @@ namespace CustomTimeTrials.NativeMenu
 {
     class Menu
     {
+        private class TrackedListItem
+        {
+            public int index;
+            public List<dynamic> Items;
+            public dynamic SelectedItem
+            {
+                get { return this.Items[this.index]; }
+            }
+        }
+
         private UIMenu menu;
         private MenuPool _MenuPool = new MenuPool();
         private delegate void Callback();
         private Dictionary<string, Delegate> callbacks = new Dictionary<string, Delegate>();
+        private Dictionary<string, TrackedListItem> trackedMenuLists = new Dictionary<string, TrackedListItem>();
 
         public Menu(string menuTitle, string menuSubTitle, Action onExitCallback)
         {
@@ -43,8 +54,23 @@ namespace CustomTimeTrials.NativeMenu
 
         public void AddListButton(string text, List<dynamic> listItems, Action callback=null)
         {
+            int initialIndex = 0;
+
             // Add the list item button to the menu.
-            this.AddMenuItemWithCallback(new UIMenuListItem(text, listItems, 0), callback);
+            this.AddMenuItemWithCallback(new UIMenuListItem(text, listItems, initialIndex), callback);
+
+            // Add keep track of the selected index.
+
+            //this.selectedListItems.Add(text, initialIndex);
+        }
+
+        public string GetSelectedItem(string listItemText)
+        {
+            if (this.trackedMenuLists.ContainsKey(listItemText))
+            {
+                return this.trackedMenuLists[listItemText].SelectedItem;
+            }
+            return null;
         }
 
         public void Show()
@@ -85,7 +111,10 @@ namespace CustomTimeTrials.NativeMenu
 
         private void OnListChange(UIMenu sender, UIMenuItem selectedItem, int index)
         {
-            // do somthing to do with list indexs here
+            if (this.trackedMenuLists.ContainsKey(selectedItem.Text))
+            {
+                this.trackedMenuLists[selectedItem.Text].index = index;
+            }
         }
 
         private void SetCallback(string itemText, Action callback)
