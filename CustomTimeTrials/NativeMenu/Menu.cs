@@ -69,7 +69,7 @@ namespace CustomTimeTrials.NativeMenu
             this.trackedMenuLists.Add(text, new TrackedListItem(listItems));
         }
 
-        public string GetSelectedItem(string listItemText)
+        public dynamic GetSelectedItem(string listItemText)
         {
             if (this.trackedMenuLists.ContainsKey(listItemText))
             {

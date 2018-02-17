@@ -30,12 +30,17 @@ namespace CustomTimeTrials.TimeTrialSetupState
             this.menu.Update();
         }
 
+        public int GetSelectedLapCount()
+        {
+            return this.menu.GetSelectedItem("Laps");
+        }
+
         private List<dynamic> GenerateLapsOptions(int min = 1, int max = 100)
         {
             List<dynamic> laps = new List<dynamic>();
             for (int i = min; i < max; i++)
             {
-                laps.Add(i.ToString());
+                laps.Add(i);
             }
             return laps;
         }

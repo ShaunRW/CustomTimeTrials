@@ -35,7 +35,7 @@ namespace CustomTimeTrials.TimeTrialSetupState
         ======================== */
         private void onStart()
         {
-            int lapCount = 2; // grab from menu
+            int lapCount = this.setupUI.GetSelectedLapCount();
             this.newState = new TimeTrialState.TimeTrialState(this.timeTrialData, lapCount);
         }
         private void onMenuExit()
