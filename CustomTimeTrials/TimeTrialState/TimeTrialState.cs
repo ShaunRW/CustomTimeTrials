@@ -106,7 +106,6 @@ namespace CustomTimeTrials.TimeTrialState
 
         private void onCheckpointReached()
         {
-            // Play checkpoint sound.
             this.audioManager.PlayCheckpointReachedSound();
         }
 
@@ -118,6 +117,7 @@ namespace CustomTimeTrials.TimeTrialState
 
         private void onNewLap()
         {
+            this.audioManager.PlayCheckpointReachedSound();
             this.timeTrialUI.SetHUDLap(this.lapManager.ToString());
         }
 
