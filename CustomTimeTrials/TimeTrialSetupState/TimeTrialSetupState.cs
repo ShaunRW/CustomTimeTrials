@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using CustomTimeTrials.StateMachine;
 using CustomTimeTrials.MainMenuState;
+using CustomTimeTrials.TimeTrialState;
 
 namespace CustomTimeTrials.TimeTrialSetupState
 {
@@ -21,7 +22,7 @@ namespace CustomTimeTrials.TimeTrialSetupState
         public TimeTrialSetupState(TimeTrialData raceData)
         {
             this.timeTrialData = raceData;
-            this.setupUI.CreateMenu(raceData.displayName, raceData.type, this.onMenuExit);
+            this.setupUI.CreateMenu(raceData.displayName, raceData.type, this.onMenuExit, this.onStart);
         }
 
         public override State onTick()
@@ -32,6 +33,11 @@ namespace CustomTimeTrials.TimeTrialSetupState
 
         /* MENU EVENT CALLBACKS 
         ======================== */
+        private void onStart()
+        {
+            int lapCount = 2; // grab from menu
+            this.newState = new TimeTrialState.TimeTrialState(this.timeTrialData, lapCount);
+        }
         private void onMenuExit()
         {
             this.newState = new MainMenuState.MainMenuState();

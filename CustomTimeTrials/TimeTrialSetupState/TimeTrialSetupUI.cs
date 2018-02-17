@@ -12,7 +12,7 @@ namespace CustomTimeTrials.TimeTrialSetupState
     {
         private NativeMenu.Menu menu;
 
-        public void CreateMenu(string raceName, string raceType, Action onMenuExitCallback)
+        public void CreateMenu(string raceName, string raceType, Action onMenuExitCallback, Action onStartCallback)
         {
             this.menu = new NativeMenu.Menu("Custom Time Trials", raceName, onMenuExitCallback);
 
@@ -20,7 +20,7 @@ namespace CustomTimeTrials.TimeTrialSetupState
             {
                 this.menu.AddListButton("Laps", this.GenerateLapsOptions());
             }
-            this.menu.AddButton("Start", null);
+            this.menu.AddButton("Start", onStartCallback);
 
             this.menu.Show();
         }

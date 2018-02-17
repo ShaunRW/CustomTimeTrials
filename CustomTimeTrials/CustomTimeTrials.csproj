@@ -52,7 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Checkpoint.cs" />
+    <Compile Include="TimeTrialState\Checkpoint.cs" />
     <Compile Include="EditorState\EditorState.cs" />
     <Compile Include="EditorState\EditorUI.cs" />
     <Compile Include="MainMenuState\MainMenuState.cs" />
@@ -68,6 +68,13 @@
     <Compile Include="TimeTrialFile.cs" />
     <Compile Include="TimeTrialSetupState\TimeTrialSetupState.cs" />
     <Compile Include="TimeTrialSetupState\TimeTrialSetupUI.cs" />
+    <Compile Include="TimeTrialState\CheckpointManager.cs" />
+    <Compile Include="TimeTrialState\Countdown.cs" />
+    <Compile Include="TimeTrialState\LapManager.cs" />
+    <Compile Include="TimeTrialState\PlayerManager.cs" />
+    <Compile Include="TimeTrialState\TimeManager.cs" />
+    <Compile Include="TimeTrialState\TimeTrialState.cs" />
+    <Compile Include="TimeTrialState\TimeTrialUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
