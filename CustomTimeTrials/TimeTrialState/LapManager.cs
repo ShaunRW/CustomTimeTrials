@@ -53,5 +53,17 @@ namespace CustomTimeTrials.TimeTrialState
                 this.onRaceFinishedCallback();
             }
         }
+
+        public override string ToString()
+        {
+            if (this.isCircuit)
+            {
+                return string.Format("{0}/{1}", this.current, this.count);
+            }
+            else
+            {
+                return "N/A";
+            }
+        }
     }
 }

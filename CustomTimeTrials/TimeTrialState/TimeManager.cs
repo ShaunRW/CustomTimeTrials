@@ -31,5 +31,17 @@ namespace CustomTimeTrials.TimeTrialState
         {
             this.start = this.now;
         }
+
+        public string Format(bool includeMilliseconds = false)
+        {
+            if (includeMilliseconds)
+            {
+                return TimeSpan.FromMilliseconds(this.elapsed).ToString((@"mm\:ss\:fff"));
+            }
+            else
+            {
+                return TimeSpan.FromMilliseconds(this.elapsed).ToString((@"mm\:ss"));
+            }
+        }
     }
 }

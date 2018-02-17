@@ -35,7 +35,11 @@ namespace CustomTimeTrials.TimeTrialSetupState
         ======================== */
         private void onStart()
         {
-            int lapCount = this.setupUI.GetSelectedLapCount();
+            int lapCount = 0;
+            if (this.timeTrialData.type == "circuit")
+            {
+                lapCount = this.setupUI.GetSelectedLapCount();
+            }
             this.newState = new TimeTrialState.TimeTrialState(this.timeTrialData, lapCount);
         }
         private void onMenuExit()

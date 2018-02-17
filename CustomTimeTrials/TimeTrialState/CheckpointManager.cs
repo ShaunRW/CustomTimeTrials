@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 using GTA.Math;
 
-using GTA;
-
 namespace CustomTimeTrials.TimeTrialState
 {
     class CheckpointManager

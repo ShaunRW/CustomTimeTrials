@@ -56,6 +56,7 @@ namespace CustomTimeTrials.TimeTrialState
                     this.BeginTimeTrial();
                 }
             }
+            this.timeTrialUI.UpdateHUD();
             return this.newState;
         }
 
@@ -78,6 +79,12 @@ namespace CustomTimeTrials.TimeTrialState
 
             this.checkpointManager.Show(1, CheckpointIcon.Arrow);
             this.checkpointManager.ShowFutureBlip();
+
+            this.timeTrialUI.SetupTimeHud();
+            if (this.lapManager.isCircuit)
+            {
+                this.timeTrialUI.SetupLapHud(this.lapManager.ToString());
+            }
         }
         
         private void BeginTimeTrial()
@@ -91,6 +98,7 @@ namespace CustomTimeTrials.TimeTrialState
 
         private void UpdateTimeTrial()
         {
+            this.timeTrialUI.SetHUDTime(this.time.Format());
             this.checkpointManager.Update(this.lapManager.onLast);
         }
 
@@ -109,7 +117,7 @@ namespace CustomTimeTrials.TimeTrialState
 
         private void onNewLap()
         {
-            UI.Notify("onNewLap");
+            this.timeTrialUI.SetHUDLap(this.lapManager.ToString());
         }
 
         private void onFinish()
