@@ -12,13 +12,18 @@ namespace CustomTimeTrials.NativeMenu
 {
     class Menu
     {
-        private class TrackedListItem
+        private sealed class TrackedListItem
         {
             public int index;
             public List<dynamic> Items;
             public dynamic SelectedItem
             {
                 get { return this.Items[this.index]; }
+            }
+            public TrackedListItem(List<dynamic> items)
+            {
+                this.index = 0;
+                this.Items = items;
             }
         }
 
@@ -61,7 +66,7 @@ namespace CustomTimeTrials.NativeMenu
 
             // Add keep track of the selected index.
 
-            //this.selectedListItems.Add(text, initialIndex);
+            this.trackedMenuLists.Add(text, new TrackedListItem(listItems));
         }
 
         public string GetSelectedItem(string listItemText)
