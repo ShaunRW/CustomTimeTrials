@@ -8,6 +8,7 @@ using GTA;
 
 using CustomTimeTrials.StateMachine;
 using CustomTimeTrials.InactiveState;
+using CustomTimeTrials.EditorState;
 
 namespace CustomTimeTrials.MainMenuState
 {
@@ -18,7 +19,7 @@ namespace CustomTimeTrials.MainMenuState
 
         public MainMenuState()
         {
-            this.mainMenuUI.CreateMenu(this.onMenuExit);
+            this.mainMenuUI.CreateMenu(this.onMenuExit, this.onSelectStartTimeTrial, this.onSelectEditor);
         }
 
         public override State onTick()
@@ -27,9 +28,21 @@ namespace CustomTimeTrials.MainMenuState
             return this.newState;
         }
 
+
+        /* MENU EVENT CALLBACKS 
+        ======================== */
+        private void onSelectStartTimeTrial()
+        {
+            // Start race
+        }
+
+        private void onSelectEditor()
+        {
+            // this.newState = new EditorState.EditorState();
+        }
+
         private void onMenuExit()
         {
-            UI.Notify("Exit Menu");
             this.newState = new InactiveState.InactiveState();
         }
     }
