@@ -38,7 +38,7 @@ namespace CustomTimeTrials.MainMenuState
 
         private void onSelectEditor()
         {
-            // this.newState = new EditorState.EditorState();
+            this.newState = new EditorState.EditorState();
         }
 
         private void onMenuExit()
