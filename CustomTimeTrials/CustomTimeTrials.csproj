@@ -73,6 +73,7 @@
     <Compile Include="TimeTrialState\LapManager.cs" />
     <Compile Include="TimeTrialState\PlayerManager.cs" />
     <Compile Include="TimeTrialState\TimeManager.cs" />
+    <Compile Include="TimeTrialState\TimeTrialAudio.cs" />
     <Compile Include="TimeTrialState\TimeTrialState.cs" />
     <Compile Include="TimeTrialState\TimeTrialUI.cs" />
   </ItemGroup>

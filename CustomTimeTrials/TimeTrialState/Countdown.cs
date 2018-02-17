@@ -10,6 +10,7 @@ namespace CustomTimeTrials.TimeTrialState
     {
 
         private TimeTrialUI timeTrialUI = new TimeTrialUI();
+        private TimeTrialAudio audioManager = new TimeTrialAudio();
 
         private TimeManager time;
         private int currentStep;
@@ -35,6 +36,7 @@ namespace CustomTimeTrials.TimeTrialState
                 this.currentStep -= 1;
 
                 this.timeTrialUI.ShowCountdownMessage(this.currentStep);
+                this.audioManager.PlayCountdownBeep();
 
                 if (this.currentStep == 0)
                 {

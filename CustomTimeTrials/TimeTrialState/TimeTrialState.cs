@@ -27,6 +27,7 @@ namespace CustomTimeTrials.TimeTrialState
         private LapManager lapManager;
         private CheckpointManager checkpointManager;
         private PlayerManager player = new PlayerManager();
+        private TimeTrialAudio audioManager = new TimeTrialAudio();
 
 
         public TimeTrialState(TimeTrialData data, int lapCount)
@@ -92,6 +93,7 @@ namespace CustomTimeTrials.TimeTrialState
             this.innerState = InternalState.Race;
             this.player.UnfreezePlayer();
             this.time = new TimeManager();
+            this.audioManager.PlayRaceBeginSound();
         }
 
 
@@ -106,13 +108,14 @@ namespace CustomTimeTrials.TimeTrialState
 
         private void onCheckpointReached()
         {
-            UI.Notify("onCheckpointReached");
+            // Play checkpoint sound.
+            this.audioManager.PlayCheckpointReachedSound();
         }
 
         private void onLapComplete()
         {
-            UI.Notify("onLapComplete");
             this.lapManager.EndCurrentLap();
+            // todo: record fastest laps.
         }
 
         private void onNewLap()
@@ -122,7 +125,8 @@ namespace CustomTimeTrials.TimeTrialState
 
         private void onFinish()
         {
-            UI.Notify("onFinish");
+            // do something with the race data
+            this.audioManager.PlayRaceFinishedSound();
             this.newState = new InactiveState.InactiveState();
         }
     }
