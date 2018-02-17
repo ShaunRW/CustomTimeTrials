@@ -9,20 +9,22 @@ using GTA;
 using GTA.Native;
 using GTA.Math;
 
+using CustomTimeTrials.StateMachine;
+using CustomTimeTrials.InactiveState;
+
 namespace CustomTimeTrials
 {
     public class CustomTimeTrials : Script
     {
 
-        private KeyPressTracker keyPressTracker = new KeyPressTracker();
-        private IMode mode;
-
+        private StateMachine.StateMachine stateMachine;
 
         public CustomTimeTrials()
         {
             UI.Notify("Custom Time Trials 1.0 by ShaunRW!");
 
-            this.mode = new InactiveMode(this.keyPressTracker);
+            // this.mode = new InactiveMode(this.keyPressTracker);
+            this.stateMachine = new StateMachine.StateMachine(new InactiveState.InactiveState());
 
             this.Tick += onTick;
             this.KeyDown += onKeyDown;
@@ -31,18 +33,17 @@ namespace CustomTimeTrials
 
         private void onTick(object sender, EventArgs e)
         {
-            this.mode.onTick();
-            this.mode = this.mode.GetNewMode();
+            this.stateMachine.onTick();
         }
 
         private void onKeyDown(object sender, KeyEventArgs e)
         {
-            this.mode.onKeyDown(e);
+            this.stateMachine.onKeyDown(e);
         }
 
         private void onKeyUp(object sender, KeyEventArgs e)
         {
-            this.mode.onKeyUp(e);
+            this.stateMachine.onKeyUp(e);
         }
     }
 }
