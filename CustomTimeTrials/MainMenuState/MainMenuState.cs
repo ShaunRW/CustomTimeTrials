@@ -8,6 +8,7 @@ using GTA;
 
 using CustomTimeTrials.StateMachine;
 using CustomTimeTrials.InactiveState;
+using CustomTimeTrials.TimeTrialSetupState;
 using CustomTimeTrials.EditorState;
 
 namespace CustomTimeTrials.MainMenuState
@@ -33,7 +34,12 @@ namespace CustomTimeTrials.MainMenuState
         ======================== */
         private void onSelectStartTimeTrial()
         {
-            // Start race
+            // load the selected time trial data
+            string timeTrial = this.mainMenuUI.GetSelectedTimeTrial();
+            TimeTrialFile file = new TimeTrialFile();
+            file.load(timeTrial);
+
+            this.newState = new TimeTrialSetupState.TimeTrialSetupState(file.data);
         }
 
         private void onSelectEditor()

@@ -66,6 +66,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimeTrialData.cs" />
     <Compile Include="TimeTrialFile.cs" />
+    <Compile Include="TimeTrialSetupState\TimeTrialSetupState.cs" />
+    <Compile Include="TimeTrialSetupState\TimeTrialSetupUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

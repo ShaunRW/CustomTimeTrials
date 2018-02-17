@@ -27,6 +27,11 @@ namespace CustomTimeTrials.MainMenuState
             this.menu.Update();
         }
 
+        public string GetSelectedTimeTrial()
+        {
+            return this.menu.GetSelectedItem("Start Time Trial");
+        }
+
         private List<dynamic> GetTimeTrialList(bool includeExtension = false)
         {
             List<dynamic> races = new List<dynamic>();
