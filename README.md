@@ -30,3 +30,9 @@ Copy the following items into the 'Grand Theft Auto V/scripts' directory.
 * Remove Falling out of cars when in race.
 * Make player invincable while in race.
 * Add option to turn vehicle damage on/off.
+
+
+### Bugs:
+
+* Player is still hurt when crashing really hard. Possible workaround: Heal player at every checkpoint.
+
