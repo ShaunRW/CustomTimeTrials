@@ -18,12 +18,12 @@ Copy the following items into the 'Grand Theft Auto V/scripts' directory.
 
 ### How to use:
 
-* Once in-game, press F9 to access the menu. from here you can select the time trial you wish to start, and set the number of laps.
+* Once in-game, press F9 to access the menu. from here you can select the time trial you wish to start, or if you wish to create your own time trial using the editor.
 
 
 ### Todo:
 
-* Create a start race menu that can be accessed from the F9 menu. The items would be 'Start a Time Trial' and 'Create New Time Trial'
+* Add a way to exit out of a time trial whenever.
 * Show time of current lap on the hud.
 * Show fastest laptime this race on the hud.
 * Record Race Results for stats purposes. Such as fasted time on this time trial.
