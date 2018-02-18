@@ -30,5 +30,4 @@ Copy the following items into the 'Grand Theft Auto V/scripts' directory.
 * Remove Falling out of cars when in race.
 * Make player invincable while in race.
 * Add Weather option before race.
-* Add Time of day option before race.
 * Add option to turn vehicle damage on/off.
