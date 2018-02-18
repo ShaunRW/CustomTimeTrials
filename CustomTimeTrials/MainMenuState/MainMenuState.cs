@@ -10,6 +10,7 @@ using CustomTimeTrials.StateMachine;
 using CustomTimeTrials.InactiveState;
 using CustomTimeTrials.TimeTrialSetupState;
 using CustomTimeTrials.EditorState;
+using CustomTimeTrials.TimeTrialData;
 
 namespace CustomTimeTrials.MainMenuState
 {
@@ -36,7 +37,7 @@ namespace CustomTimeTrials.MainMenuState
         {
             // load the selected time trial data
             string timeTrial = this.mainMenuUI.GetSelectedTimeTrial();
-            TimeTrialFile file = new TimeTrialFile();
+            TimeTrialData.TimeTrialFile file = new TimeTrialData.TimeTrialFile();
             file.load(timeTrial);
 
             this.newState = new TimeTrialSetupState.TimeTrialSetupState(file.data);

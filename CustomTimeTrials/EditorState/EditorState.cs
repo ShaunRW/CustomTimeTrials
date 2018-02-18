@@ -10,6 +10,7 @@ using GTA;
 using GTA.Math;
 
 using CustomTimeTrials.StateMachine;
+using CustomTimeTrials.TimeTrialData;
 
 namespace CustomTimeTrials.EditorState
 {
@@ -20,7 +21,7 @@ namespace CustomTimeTrials.EditorState
         private EditorUI editorUI = new EditorUI();
 
         // data
-        private TimeTrialData data = new TimeTrialData();
+        private TimeTrialData.TimeTrialSaveData data = new TimeTrialData.TimeTrialSaveData();
 
 
         public EditorState()
@@ -83,7 +84,7 @@ namespace CustomTimeTrials.EditorState
             this.data.type = this.editorUI.GetRaceType().ToLower();
 
             // Put the data in a file object and save it
-            TimeTrialFile newFile = new TimeTrialFile();
+            TimeTrialFile newFile = new TimeTrialData.TimeTrialFile();
             newFile.data = this.data;
             newFile.save();
         }

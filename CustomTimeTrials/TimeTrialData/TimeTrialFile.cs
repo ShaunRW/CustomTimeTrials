@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 using Newtonsoft.Json;
 
-namespace CustomTimeTrials
+namespace CustomTimeTrials.TimeTrialData
 {
     class TimeTrialFile
     {
-        public TimeTrialData data = new TimeTrialData();
+        public TimeTrialSaveData data = new TimeTrialSaveData();
         private string fileExtension = "json";
 
         public void load(string timeTrialName)
@@ -18,7 +18,7 @@ namespace CustomTimeTrials
             string path = this.GeneratePath(timeTrialName);
             string fileContents = System.IO.File.ReadAllText(path);
 
-            this.data = JsonConvert.DeserializeObject<TimeTrialData>(fileContents);
+            this.data = JsonConvert.DeserializeObject<TimeTrialSaveData>(fileContents);
         }
 
         public void save()

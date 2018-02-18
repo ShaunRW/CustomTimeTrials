@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 using GTA.Math;
 
+using CustomTimeTrials.TimeTrialData;
+
 namespace CustomTimeTrials.TimeTrialState
 {
     class CheckpointManager
@@ -148,7 +150,7 @@ namespace CustomTimeTrials.TimeTrialState
         }
 
 
-        public void Load(TimeTrialData data)
+        public void Load(TimeTrialData.TimeTrialSaveData data)
         {
             Vector3 PointTo;
 

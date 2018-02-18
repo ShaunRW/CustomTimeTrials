@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 using CustomTimeTrials.StateMachine;
+using CustomTimeTrials.TimeTrialData;
+
+using GTA;
 
 namespace CustomTimeTrials.TimeTrialState
 {
@@ -21,14 +24,14 @@ namespace CustomTimeTrials.TimeTrialState
         private Countdown countdown = new Countdown(4, 1500);
 
         private TimeManager time;
-        private TimeTrialData timeTrialData;
+        private TimeTrialData.TimeTrialSaveData timeTrialData;
         private LapManager lapManager;
         private CheckpointManager checkpointManager;
         private PlayerManager player = new PlayerManager();
         private TimeTrialAudio audioManager = new TimeTrialAudio();
 
 
-        public TimeTrialState(TimeTrialData data, int lapCount)
+        public TimeTrialState(TimeTrialData.TimeTrialSaveData data, int lapCount)
         {
             // init time trial managers
             this.timeTrialData = data;
@@ -84,6 +87,11 @@ namespace CustomTimeTrials.TimeTrialState
             {
                 this.timeTrialUI.SetupLapHud(this.lapManager.ToString());
             }
+
+
+            // other settings.
+            //World.CurrentDayTime = new TimeSpan(24,0,0);
+
         }
         
         private void BeginTimeTrial()

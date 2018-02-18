@@ -64,8 +64,8 @@
     <Compile Include="InactiveState\InactiveState.cs" />
     <Compile Include="KeyPressTracker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TimeTrialData.cs" />
-    <Compile Include="TimeTrialFile.cs" />
+    <Compile Include="TimeTrialData\TimeTrialData.cs" />
+    <Compile Include="TimeTrialData\TimeTrialFile.cs" />
     <Compile Include="TimeTrialSetupState\TimeTrialSetupState.cs" />
     <Compile Include="TimeTrialSetupState\TimeTrialSetupUI.cs" />
     <Compile Include="TimeTrialState\CheckpointManager.cs" />

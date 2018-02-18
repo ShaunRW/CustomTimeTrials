@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using GTA.Math;
 
-namespace CustomTimeTrials
+namespace CustomTimeTrials.TimeTrialData
 {
     class SimpleVector3
     {
@@ -41,7 +41,7 @@ namespace CustomTimeTrials
         public string vehicleName;
     }
 
-    class TimeTrialData
+    class TimeTrialSaveData
     {
         public string displayName;
         public string type;

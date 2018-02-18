@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CustomTimeTrials.StateMachine;
 using CustomTimeTrials.MainMenuState;
 using CustomTimeTrials.TimeTrialState;
+using CustomTimeTrials.TimeTrialData;
 
 namespace CustomTimeTrials.TimeTrialSetupState
 {
@@ -17,9 +18,9 @@ namespace CustomTimeTrials.TimeTrialSetupState
         private TimeTrialSetupUI setupUI = new TimeTrialSetupUI();
 
         // data properties
-        private TimeTrialData timeTrialData;
+        private TimeTrialData.TimeTrialSaveData timeTrialData;
 
-        public TimeTrialSetupState(TimeTrialData raceData)
+        public TimeTrialSetupState(TimeTrialData.TimeTrialSaveData raceData)
         {
             this.timeTrialData = raceData;
             this.setupUI.CreateMenu(raceData.displayName, raceData.type, this.onMenuExit, this.onStart);
