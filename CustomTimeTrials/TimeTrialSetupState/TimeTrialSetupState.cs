@@ -45,6 +45,9 @@ namespace CustomTimeTrials.TimeTrialSetupState
                 timeTrialSetup.lapCount = this.setupUI.GetSelectedLapCount();
             }
 
+            // get selected time of day.
+            timeTrialSetup.timeOfDay = this.setupUI.GetSelectedTimeOfDay();
+
             this.newState = new TimeTrialState.TimeTrialState(this.timeTrialData, timeTrialSetup);
         }
         private void onMenuExit()

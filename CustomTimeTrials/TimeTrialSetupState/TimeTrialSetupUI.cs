@@ -20,6 +20,7 @@ namespace CustomTimeTrials.TimeTrialSetupState
             {
                 this.menu.AddListButton("Laps", this.GenerateLapsOptions());
             }
+            this.menu.AddListButton("Time of Day", this.GenerateTimeOfDayOptions());
             this.menu.AddButton("Start", onStartCallback);
 
             this.menu.Show();
@@ -35,6 +36,11 @@ namespace CustomTimeTrials.TimeTrialSetupState
             return this.menu.GetSelectedItem("Laps");
         }
 
+        public string GetSelectedTimeOfDay()
+        {
+            return this.menu.GetSelectedItem("Time of Day");
+        }
+
         private List<dynamic> GenerateLapsOptions(int min = 1, int max = 100)
         {
             List<dynamic> laps = new List<dynamic>();
@@ -43,6 +49,20 @@ namespace CustomTimeTrials.TimeTrialSetupState
                 laps.Add(i);
             }
             return laps;
+        }
+
+        private List<dynamic> GenerateTimeOfDayOptions()
+        {
+            List<dynamic> times = new List<dynamic>();
+            times.Add("Midnight");
+            times.Add("Pre-Dawn");
+            times.Add("Dawn");
+            times.Add("Morning");
+            times.Add("Noon");
+            times.Add("Afternoon");
+            times.Add("Sunset");
+            times.Add("Dusk");
+            return times;
         }
     }
 }

@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 using CustomTimeTrials.StateMachine;
 using CustomTimeTrials.TimeTrialData;
 
-using GTA;
-
 namespace CustomTimeTrials.TimeTrialState
 {
     class TimeTrialState : StateMachine.State
@@ -27,16 +25,20 @@ namespace CustomTimeTrials.TimeTrialState
         private TimeTrialData.TimeTrialSaveData timeTrialData;
         private LapManager lapManager;
         private CheckpointManager checkpointManager;
+        private WorldManager world = new WorldManager();
         private PlayerManager player = new PlayerManager();
         private TimeTrialAudio audioManager = new TimeTrialAudio();
 
 
-        public TimeTrialState(TimeTrialData.TimeTrialSaveData data, TimeTrialData.SetupData timeTrialSetup)
+        public TimeTrialState(TimeTrialData.TimeTrialSaveData data, TimeTrialData.SetupData setup)
         {
-            // init time trial managers
+            // init time trial data and checkpoints
             this.timeTrialData = data;
-            this.lapManager = new LapManager(timeTrialSetup.lapCount, data.type, this.onNewLap, this.onFinish);
             this.checkpointManager = new CheckpointManager(this.onCheckpointReached, this.onLapComplete);
+
+            // Process the setup data
+            this.lapManager = new LapManager(setup.lapCount, data.type, this.onNewLap, this.onFinish);
+            this.world.SetTimeOfDay(setup.timeOfDay);
 
             // setup the time trial
             this.SetupTimeTrial();

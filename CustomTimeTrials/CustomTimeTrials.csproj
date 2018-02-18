@@ -77,6 +77,7 @@
     <Compile Include="TimeTrialState\TimeTrialAudio.cs" />
     <Compile Include="TimeTrialState\TimeTrialState.cs" />
     <Compile Include="TimeTrialState\TimeTrialUI.cs" />
+    <Compile Include="TimeTrialState\WorldManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
