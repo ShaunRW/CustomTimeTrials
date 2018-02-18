@@ -41,6 +41,8 @@ namespace CustomTimeTrials.TimeTrialState
             this.world.SetTimeOfDay(setup.timeOfDay);
             this.world.SetWeather(setup.weather);
 
+            
+
             // setup the time trial
             this.SetupTimeTrial();
 
@@ -81,6 +83,7 @@ namespace CustomTimeTrials.TimeTrialState
             this.checkpointManager.Load(this.timeTrialData);
 
             this.player.MoveVehicleTo(this.timeTrialData.start.position.ToGtaVector3(), this.timeTrialData.start.rotation.ToGtaVector3());
+            this.player.CantDie();
 
             this.checkpointManager.Show(1, CheckpointIcon.Arrow);
             this.checkpointManager.ShowFutureBlip();
@@ -107,6 +110,11 @@ namespace CustomTimeTrials.TimeTrialState
         {
             this.timeTrialUI.SetHUDTime(this.time.Format());
             this.checkpointManager.Update(this.lapManager.onLast);
+        }
+
+        private void ResetStates()
+        {
+            this.player.CantDie(false);
         }
 
 
@@ -136,6 +144,7 @@ namespace CustomTimeTrials.TimeTrialState
             this.timeTrialUI.ShowFinishedScreen("Finished", time);
             this.timeTrialUI.ShowFinishedNotification( this.timeTrialData.displayName, time, this.lapManager.count);
 
+            this.ResetStates();
 
             this.newState = new InactiveState.InactiveState();
         }

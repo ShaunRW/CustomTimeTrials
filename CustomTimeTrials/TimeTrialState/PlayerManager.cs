@@ -30,6 +30,59 @@ namespace CustomTimeTrials.TimeTrialState
             Game.Player.CanControlCharacter = false;
         }
 
+        public void CantDie(bool cantDie=true)
+        {
+            bool isTrue = cantDie;
+            bool isFalse = !cantDie;
+
+            /* Doesn't hurt player when:
+             * - Getting shot
+             */
+            Game.Player.Character.IsBulletProof = isTrue; // works
+
+            /* Doesn't hurt player when:
+             * - Is near explosion
+             * - Is in exploding vehicle.
+             */
+            Game.Player.Character.IsExplosionProof = isTrue; // works
+
+            /* Player can't catch on fire. */
+            Game.Player.Character.IsFireProof = isTrue; // works
+
+            /* Doesn't hurt player when:
+             * - Hit by vehicle.
+             * - is ragdolling
+             * - flung off motorbike.
+             */
+            Game.Player.Character.IsCollisionProof = isTrue;
+
+            /* Doesn't hurt player when:
+             * - is getting attacked with a melee weapon or punches
+             * - is getting attacked by animal, except when underwater.
+             */
+            Game.Player.Character.IsMeleeProof = isTrue;
+
+            /* Stops the player from flying through the windscreen.
+             * Although it still hurts the player even when isCollisionProof
+             */
+            Game.Player.Character.CanFlyThroughWindscreen = isFalse;
+
+            /* Stops the player from getting dragged from a vehicle or bike.
+             */
+            Game.Player.Character.CanBeDraggedOutOfVehicle = isFalse;
+
+
+            /* Stops the players breath from decreasing while swimming under water.
+             * - Doesn't work while in a vehicle.
+             */
+            Game.Player.Character.DrownsInWater = isFalse;
+
+            /* Stops the players breath from decreasing while sitting in a sinking vehicle.
+             * - Doesn't work while swimming underwater.
+             */
+            Game.Player.Character.DrownsInSinkingVehicle = isFalse;
+        }
+
         public bool isInVehicle()
         {
             return Game.Player.Character.IsSittingInVehicle();
