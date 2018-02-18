@@ -6,37 +6,39 @@ using System.Threading.Tasks;
 
 using GTA;
 
+using CustomTimeTrials.TimeTrialData;
+
 namespace CustomTimeTrials.TimeTrialState
 {
     class WorldManager
     {
-        public void SetTimeOfDay(string timeOfDay)
+        public void SetTimeOfDay(TimeTrialData.TimeOfDay timeOfDay)
         {
             TimeSpan time;
             switch (timeOfDay)
             {
-                case "Midnight":
+                case TimeTrialData.TimeOfDay.Midnight:
                     time = new TimeSpan(00,00,00);
                     break;
-                case "Pre-Dawn":
+                case TimeTrialData.TimeOfDay.PreDawn:
                     time = new TimeSpan(05, 00, 00);
                     break;
-                case "Dawn":
+                case TimeTrialData.TimeOfDay.Dawn:
                     time = new TimeSpan(05, 00, 00);
                     break;
-                case "Morning":
+                case TimeTrialData.TimeOfDay.Morning:
                     time = new TimeSpan(08, 00, 00);
                     break;
-                case "Noon":
+                case TimeTrialData.TimeOfDay.Noon:
                     time = new TimeSpan(12, 00, 00);
                     break;
-                case "Afternoon":
+                case TimeTrialData.TimeOfDay.Afternoon:
                     time = new TimeSpan(16, 00, 00);
                     break;
-                case "Sunset":
+                case TimeTrialData.TimeOfDay.Sunset:
                     time = new TimeSpan(18, 30, 00);
                     break;
-                case "Dusk":
+                case TimeTrialData.TimeOfDay.Dusk:
                     time = new TimeSpan(21, 00, 00);
                     break;
                 default:

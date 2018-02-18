@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using GTA;
 
 using CustomTimeTrials.NativeMenu;
+using CustomTimeTrials.TimeTrialData;
 
 namespace CustomTimeTrials.TimeTrialSetupState
 {
@@ -39,7 +40,7 @@ namespace CustomTimeTrials.TimeTrialSetupState
             return this.menu.GetSelectedItem("Laps");
         }
 
-        public string GetSelectedTimeOfDay()
+        public TimeTrialData.TimeOfDay GetSelectedTimeOfDay()
         {
             return this.menu.GetSelectedItem("Time of Day");
         }
@@ -62,14 +63,14 @@ namespace CustomTimeTrials.TimeTrialSetupState
         private List<dynamic> GenerateTimeOfDayOptions()
         {
             var times = new List<dynamic>();
-            times.Add("Midnight");
-            times.Add("Pre-Dawn");
-            times.Add("Dawn");
-            times.Add("Morning");
-            times.Add("Noon");
-            times.Add("Afternoon");
-            times.Add("Sunset");
-            times.Add("Dusk");
+            times.Add(TimeTrialData.TimeOfDay.Morning);
+            times.Add(TimeTrialData.TimeOfDay.Noon);
+            times.Add(TimeTrialData.TimeOfDay.Afternoon);
+            times.Add(TimeTrialData.TimeOfDay.Sunset);
+            times.Add(TimeTrialData.TimeOfDay.Dusk);
+            times.Add(TimeTrialData.TimeOfDay.Midnight);
+            times.Add(TimeTrialData.TimeOfDay.PreDawn);
+            times.Add(TimeTrialData.TimeOfDay.Dawn);
             return times;
         }
 

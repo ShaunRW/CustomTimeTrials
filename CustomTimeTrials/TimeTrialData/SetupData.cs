@@ -8,10 +8,21 @@ using GTA;
 
 namespace CustomTimeTrials.TimeTrialData
 {
+    enum TimeOfDay
+    {
+        Midnight,
+        PreDawn,
+        Dawn,
+        Morning,
+        Noon,
+        Afternoon,
+        Sunset,
+        Dusk
+    }
     class SetupData
     {
         public int lapCount;
-        public string timeOfDay;
+        public TimeOfDay timeOfDay;
         public Weather weather;
     }
 }
