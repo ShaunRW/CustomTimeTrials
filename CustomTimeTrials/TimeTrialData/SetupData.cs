@@ -25,5 +25,6 @@ namespace CustomTimeTrials.TimeTrialData
         public TimeOfDay timeOfDay;
         public Weather weather;
         public bool vehicleDamageOn;
+        public bool trafficOn;
     }
 }

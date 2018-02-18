@@ -26,6 +26,7 @@ namespace CustomTimeTrials.TimeTrialSetupState
             this.menu.AddListButton("Time of Day", this.GenerateTimeOfDayOptions());
             this.menu.AddListButton("Weather", this.GenerateWeatherOptions());
             this.menu.AddListButton("Vehicle Damage", new List<dynamic>{"On", "Off"});
+            this.menu.AddListButton("Traffic", new List<dynamic> { "On", "Off" });
             this.menu.AddButton("Start", onStartCallback);
 
             this.menu.Show();
@@ -54,6 +55,15 @@ namespace CustomTimeTrials.TimeTrialSetupState
         public bool GetSelectedVehicleDamage()
         {
             if (this.menu.GetSelectedItem("Vehicle Damage") == "On")
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool GetSelectedTrafficOption()
+        {
+            if (this.menu.GetSelectedItem("Traffic") == "On")
             {
                 return true;
             }

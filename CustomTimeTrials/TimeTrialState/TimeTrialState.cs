@@ -87,6 +87,11 @@ namespace CustomTimeTrials.TimeTrialState
             this.player.CantDie();
             this.player.SetVehicleDamageOn(this.setup.vehicleDamageOn);
 
+            if (this.setup.trafficOn == false)
+            {
+                this.world.SetTrafficOff();
+            }
+
             this.checkpointManager.Show(1, CheckpointIcon.Arrow);
             this.checkpointManager.ShowFutureBlip();
 
@@ -124,6 +129,11 @@ namespace CustomTimeTrials.TimeTrialState
         {
             this.player.CantDie(false);
             this.player.SetVehicleDamageOn();
+
+            if (this.setup.trafficOn == false)
+            {
+                this.world.SetTrafficOn();
+            }
         }
 
 
