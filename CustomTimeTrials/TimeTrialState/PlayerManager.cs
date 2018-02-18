@@ -11,6 +11,16 @@ namespace CustomTimeTrials.TimeTrialState
 {
     class PlayerManager
     {
+        private Vehicle vehicle;
+
+        public PlayerManager()
+        {
+            if(this.isInVehicle())
+            {
+                this.vehicle = Game.Player.LastVehicle;
+            }
+        }
+
         public void UnfreezePlayer()
         {
             Game.Player.CanControlCharacter = true;
@@ -29,11 +39,23 @@ namespace CustomTimeTrials.TimeTrialState
         {
             if (this.isInVehicle())
             {
-                Vehicle vehicle = Game.Player.LastVehicle;
-                vehicle.Position = position;
-                vehicle.Rotation = rotation;
+                this.vehicle.Position = position;
+                this.vehicle.Rotation = rotation;
                 GameplayCamera.RelativeHeading = 0.0f;
             }
+        }
+
+        public void SetVehicleInvincible()
+        {
+            this.vehicle.CanBeVisiblyDamaged = false;
+            this.vehicle.CanTiresBurst = false;
+            this.vehicle.CanWheelsBreak = false;
+            this.vehicle.EngineCanDegrade = false;
+            this.vehicle.IsBulletProof = true;
+            this.vehicle.IsCollisionProof = true;
+            this.vehicle.IsExplosionProof = true;
+            this.vehicle.IsInvincible = true;
+            this.vehicle.IsMeleeProof = true;
         }
     }
 }
