@@ -31,11 +31,11 @@ namespace CustomTimeTrials.TimeTrialState
         private TimeTrialAudio audioManager = new TimeTrialAudio();
 
 
-        public TimeTrialState(TimeTrialData.TimeTrialSaveData data, int lapCount)
+        public TimeTrialState(TimeTrialData.TimeTrialSaveData data, TimeTrialData.SetupData timeTrialSetup)
         {
             // init time trial managers
             this.timeTrialData = data;
-            this.lapManager = new LapManager(lapCount, data.type, this.onNewLap, this.onFinish);
+            this.lapManager = new LapManager(timeTrialSetup.lapCount, data.type, this.onNewLap, this.onFinish);
             this.checkpointManager = new CheckpointManager(this.onCheckpointReached, this.onLapComplete);
 
             // setup the time trial
@@ -87,10 +87,6 @@ namespace CustomTimeTrials.TimeTrialState
             {
                 this.timeTrialUI.SetupLapHud(this.lapManager.ToString());
             }
-
-
-            // other settings.
-            //World.CurrentDayTime = new TimeSpan(24,0,0);
 
         }
         

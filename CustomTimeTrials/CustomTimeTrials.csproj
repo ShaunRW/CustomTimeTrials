@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TimeTrialData\SetupData.cs" />
     <Compile Include="TimeTrialState\Checkpoint.cs" />
     <Compile Include="EditorState\EditorState.cs" />
     <Compile Include="EditorState\EditorUI.cs" />
