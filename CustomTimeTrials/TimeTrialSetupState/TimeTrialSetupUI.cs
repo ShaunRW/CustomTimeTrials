@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using GTA;
+
 using CustomTimeTrials.NativeMenu;
 
 namespace CustomTimeTrials.TimeTrialSetupState
@@ -21,6 +23,7 @@ namespace CustomTimeTrials.TimeTrialSetupState
                 this.menu.AddListButton("Laps", this.GenerateLapsOptions());
             }
             this.menu.AddListButton("Time of Day", this.GenerateTimeOfDayOptions());
+            this.menu.AddListButton("Weather", this.GenerateWeatherOptions());
             this.menu.AddButton("Start", onStartCallback);
 
             this.menu.Show();
@@ -41,6 +44,11 @@ namespace CustomTimeTrials.TimeTrialSetupState
             return this.menu.GetSelectedItem("Time of Day");
         }
 
+        public Weather GetSelectedWeather()
+        {
+            return this.menu.GetSelectedItem("Weather");
+        }
+
         private List<dynamic> GenerateLapsOptions(int min = 1, int max = 100)
         {
             List<dynamic> laps = new List<dynamic>();
@@ -53,7 +61,7 @@ namespace CustomTimeTrials.TimeTrialSetupState
 
         private List<dynamic> GenerateTimeOfDayOptions()
         {
-            List<dynamic> times = new List<dynamic>();
+            var times = new List<dynamic>();
             times.Add("Midnight");
             times.Add("Pre-Dawn");
             times.Add("Dawn");
@@ -63,6 +71,20 @@ namespace CustomTimeTrials.TimeTrialSetupState
             times.Add("Sunset");
             times.Add("Dusk");
             return times;
+        }
+
+        private List<dynamic> GenerateWeatherOptions()
+        {
+            var weather = new List<dynamic>();
+            weather.Add(Weather.Clear);
+            weather.Add(Weather.ExtraSunny);
+            weather.Add(Weather.Clouds);
+            weather.Add(Weather.Overcast);
+            weather.Add(Weather.Raining);
+            weather.Add(Weather.ThunderStorm);
+            weather.Add(Weather.Snowing);
+            weather.Add(Weather.Blizzard);
+            return weather;
         }
     }
 }

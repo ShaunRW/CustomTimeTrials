@@ -39,6 +39,7 @@ namespace CustomTimeTrials.TimeTrialState
             // Process the setup data
             this.lapManager = new LapManager(setup.lapCount, data.type, this.onNewLap, this.onFinish);
             this.world.SetTimeOfDay(setup.timeOfDay);
+            this.world.SetWeather(setup.weather);
 
             // setup the time trial
             this.SetupTimeTrial();

@@ -45,5 +45,10 @@ namespace CustomTimeTrials.TimeTrialState
             }
             World.CurrentDayTime = time;
         }
+
+        public void SetWeather(Weather weather)
+        {
+            World.Weather = weather;
+        }
     }
 }
