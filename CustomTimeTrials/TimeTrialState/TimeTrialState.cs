@@ -23,6 +23,7 @@ namespace CustomTimeTrials.TimeTrialState
 
         private TimeManager time;
         private TimeTrialData.TimeTrialSaveData timeTrialData;
+        private TimeTrialData.SetupData setup;
         private LapManager lapManager;
         private CheckpointManager checkpointManager;
         private WorldManager world = new WorldManager();
@@ -34,14 +35,13 @@ namespace CustomTimeTrials.TimeTrialState
         {
             // init time trial data and checkpoints
             this.timeTrialData = data;
+            this.setup = setup;
             this.checkpointManager = new CheckpointManager(this.onCheckpointReached, this.onLapComplete);
 
             // Process the setup data
-            this.lapManager = new LapManager(setup.lapCount, data.type, this.onNewLap, this.onFinish);
-            this.world.SetTimeOfDay(setup.timeOfDay);
-            this.world.SetWeather(setup.weather);
-
-            
+            this.lapManager = new LapManager(this.setup.lapCount, data.type, this.onNewLap, this.onFinish);
+            this.world.SetTimeOfDay(this.setup.timeOfDay);
+            this.world.SetWeather(this.setup.weather);
 
             // setup the time trial
             this.SetupTimeTrial();
@@ -85,7 +85,7 @@ namespace CustomTimeTrials.TimeTrialState
             this.player.MoveVehicleTo(this.timeTrialData.start.position.ToGtaVector3(), this.timeTrialData.start.rotation.ToGtaVector3());
 
             this.player.CantDie();
-            this.player.SetVehicleDamageOn(false); // this will be optional soon.
+            this.player.SetVehicleDamageOn(this.setup.vehicleDamageOn);
 
             this.checkpointManager.Show(1, CheckpointIcon.Arrow);
             this.checkpointManager.ShowFutureBlip();
@@ -114,7 +114,10 @@ namespace CustomTimeTrials.TimeTrialState
             this.checkpointManager.Update(this.lapManager.onLast);
 
             this.player.HealPlayerIfDamaged();
-            this.player.FixVehicleIfDamaged(); // this will be optional soon.
+            if (!this.setup.vehicleDamageOn)
+            {
+                this.player.FixVehicleIfDamaged();
+            }
         }
 
         private void ResetStates()

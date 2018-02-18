@@ -14,6 +14,9 @@ namespace CustomTimeTrials.TimeTrialState
     {
         private Vehicle vehicle;
 
+        /*
+         * Player Methods
+         */
         public PlayerManager()
         {
             if(this.isInVehicle())
@@ -114,6 +117,10 @@ namespace CustomTimeTrials.TimeTrialState
             return Game.Player.Character.IsSittingInVehicle();
         }
 
+
+        /*
+         * Vehicle Methods
+         */
         public void MoveVehicleTo(Vector3 position, Vector3 rotation)
         {
             if (this.isInVehicle())
@@ -197,7 +204,6 @@ namespace CustomTimeTrials.TimeTrialState
         {
             if (this.vehicle.IsDamaged)
             {
-                UI.Notify("Vehicle Automatically Fixed");
                 this.vehicle.Repair();
             }
         }

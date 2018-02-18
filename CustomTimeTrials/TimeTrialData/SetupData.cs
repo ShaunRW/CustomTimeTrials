@@ -24,5 +24,6 @@ namespace CustomTimeTrials.TimeTrialData
         public int lapCount;
         public TimeOfDay timeOfDay;
         public Weather weather;
+        public bool vehicleDamageOn;
     }
 }

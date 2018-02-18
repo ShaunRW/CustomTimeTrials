@@ -51,6 +51,9 @@ namespace CustomTimeTrials.TimeTrialSetupState
             // get selected weather.
             timeTrialSetup.weather = this.setupUI.GetSelectedWeather();
 
+            // Get vehicle damage setting
+            timeTrialSetup.vehicleDamageOn = this.setupUI.GetSelectedVehicleDamage();
+
             this.newState = new TimeTrialState.TimeTrialState(this.timeTrialData, timeTrialSetup);
         }
         private void onMenuExit()
