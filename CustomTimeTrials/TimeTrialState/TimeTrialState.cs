@@ -125,8 +125,11 @@ namespace CustomTimeTrials.TimeTrialState
         {
             // do something with the race data
             string time = this.time.Format(true);
-            this.timeTrialUI.ShowFinishedScreen("Finished", time);
             this.audioManager.PlayRaceFinishedSound();
+            this.timeTrialUI.ShowFinishedScreen("Finished", time);
+            this.timeTrialUI.ShowFinishedNotification( this.timeTrialData.displayName, time, this.lapManager.count);
+
+
             this.newState = new InactiveState.InactiveState();
         }
     }

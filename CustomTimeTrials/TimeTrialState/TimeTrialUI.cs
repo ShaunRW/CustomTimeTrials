@@ -55,5 +55,12 @@ namespace CustomTimeTrials.TimeTrialState
         {
             BigMessageThread.MessageInstance.ShowSimpleShard(title, msg, duration);
         }
+
+        public void ShowFinishedNotification(string raceName, string finalTime, int lapCount=0)
+        {
+            string laps = (lapCount > 0) ? string.Format("  Laps: ~b~{0}\n~w~", lapCount) : "";
+            string notification = string.Format("{0}:\n{1}  Final Time: ~b~{2}", raceName, laps, finalTime);
+            UI.Notify(notification);
+        }
     }
 }

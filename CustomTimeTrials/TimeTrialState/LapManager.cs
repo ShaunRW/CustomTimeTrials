@@ -14,8 +14,8 @@ namespace CustomTimeTrials.TimeTrialState
             get { return this.type == "circuit"; }
         }
 
-        private int count;
-        private int current;
+        public int count;
+        public int current;
         public bool onLast
         {
             get { return (this.isCircuit) ? this.current == this.count : true; }
