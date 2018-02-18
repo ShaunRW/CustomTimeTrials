@@ -8,8 +8,6 @@ using System.Windows.Forms;
 using CustomTimeTrials.StateMachine;
 using CustomTimeTrials.MainMenuState;
 
-using GTA;
-
 
 namespace CustomTimeTrials.InactiveState
 {

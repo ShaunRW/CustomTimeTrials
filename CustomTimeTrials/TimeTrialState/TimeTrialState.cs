@@ -83,7 +83,9 @@ namespace CustomTimeTrials.TimeTrialState
             this.checkpointManager.Load(this.timeTrialData);
 
             this.player.MoveVehicleTo(this.timeTrialData.start.position.ToGtaVector3(), this.timeTrialData.start.rotation.ToGtaVector3());
+
             this.player.CantDie();
+            this.player.SetVehicleDamageOn(false); // this will be optional soon.
 
             this.checkpointManager.Show(1, CheckpointIcon.Arrow);
             this.checkpointManager.ShowFutureBlip();
@@ -110,11 +112,15 @@ namespace CustomTimeTrials.TimeTrialState
         {
             this.timeTrialUI.SetHUDTime(this.time.Format());
             this.checkpointManager.Update(this.lapManager.onLast);
+
+            this.player.HealPlayerIfDamaged();
+            this.player.FixVehicleIfDamaged(); // this will be optional soon.
         }
 
         private void ResetStates()
         {
             this.player.CantDie(false);
+            this.player.SetVehicleDamageOn();
         }
 
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using GTA;
 using GTA.Math;
+using GTA.Native;
 
 namespace CustomTimeTrials.TimeTrialState
 {
@@ -83,6 +84,31 @@ namespace CustomTimeTrials.TimeTrialState
             Game.Player.Character.DrownsInSinkingVehicle = isFalse;
         }
 
+        private bool PlayerIsDamaged()
+        {
+            if (Game.Player.Character.Health < 100)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private void HealPlayer()
+        {
+            Game.Player.Character.Health = 100;
+        }
+
+        public void HealPlayerIfDamaged()
+        {
+            if (this.PlayerIsDamaged())
+            {
+                this.HealPlayer();
+            }
+        }
+
         public bool isInVehicle()
         {
             return Game.Player.Character.IsSittingInVehicle();
@@ -98,17 +124,84 @@ namespace CustomTimeTrials.TimeTrialState
             }
         }
 
-        public void SetVehicleInvincible()
+        public void SetVehicleDamageOn(bool damage=true)
         {
-            this.vehicle.CanBeVisiblyDamaged = false;
-            this.vehicle.CanTiresBurst = false;
-            this.vehicle.CanWheelsBreak = false;
-            this.vehicle.EngineCanDegrade = false;
-            this.vehicle.IsBulletProof = true;
-            this.vehicle.IsCollisionProof = true;
-            this.vehicle.IsExplosionProof = true;
-            this.vehicle.IsInvincible = true;
-            this.vehicle.IsMeleeProof = true;
+
+            bool _true = !damage;
+            bool _false = damage;
+
+            // SET PROOFS
+
+            /* Stops the vehicle from being damaged by bullets
+             * - engine will not be damanged
+             * - panel work will not be damaged
+             * - lights will not be damanged
+             * - windows WILL be damanged
+             * - Bullet holes do show up.
+             */
+            this.vehicle.IsBulletProof = _true;
+
+            /* Untested
+             */
+            this.vehicle.IsFireProof = _true;
+
+            /* this makes the car not get damaged by explosions
+             */
+            this.vehicle.IsExplosionProof = _true;
+
+            /* This stops panels from detaching from crashes
+             * - Everything else still deforms.
+             * - Tire can get stuck from deform.
+             */
+            this.vehicle.IsCollisionProof = _true;
+
+            /* this MIGHT not lose health on melee hits;
+             * - Everything else still deforms and smashes.
+             */
+            this.vehicle.IsMeleeProof = _true;
+
+
+
+            /* stops the vehicle tires from bursting:
+             * - While doing a burnout
+             * - While being shot.
+             * - not tested on spike strips yet.
+             */
+            this.vehicle.CanTiresBurst = _false;
+
+            /* Untested
+             */
+            this.vehicle.CanWheelsBreak = _false;
+
+            /* Untested
+             */
+            this.vehicle.EngineCanDegrade = _false;
+           
+            /* Not sure what this does.
+             */
+            this.vehicle.CanBeVisiblyDamaged = _false;
+
+            this.vehicle.IsOnlyDamagedByPlayer = _true;
+
+            /* Sets doors unbreakable.
+             */ 
+            this.vehicle.SetDoorBreakable(VehicleDoor.FrontLeftDoor, _false);
+            this.vehicle.SetDoorBreakable(VehicleDoor.FrontRightDoor, _false);
+            this.vehicle.SetDoorBreakable(VehicleDoor.BackLeftDoor, _false);
+            this.vehicle.SetDoorBreakable(VehicleDoor.BackRightDoor, _false);
+            this.vehicle.SetDoorBreakable(VehicleDoor.Hood, _false);
+            this.vehicle.SetDoorBreakable(VehicleDoor.Trunk, _false);
         }
+
+        public void FixVehicleIfDamaged()
+        {
+            if (this.vehicle.IsDamaged)
+            {
+                UI.Notify("Vehicle Automatically Fixed");
+                this.vehicle.Repair();
+            }
+        }
+
+
     }
 }
