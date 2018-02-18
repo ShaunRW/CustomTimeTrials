@@ -21,7 +21,7 @@ namespace CustomTimeTrials
 
         public CustomTimeTrials()
         {
-            UI.Notify("Custom Time Trials 1.0 by ShaunRW!");
+            UI.Notify("Custom Time Trials 1.1 by ShaunRW!");
 
             // this.mode = new InactiveMode(this.keyPressTracker);
             this.stateMachine = new StateMachine.StateMachine(new InactiveState.InactiveState());
