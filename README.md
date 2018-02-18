@@ -31,5 +31,5 @@ Copy the following items into the 'Grand Theft Auto V/scripts' directory.
 
 ### Bugs:
 
-* Player is still hurt when crashing really hard. Possible workaround: Heal player at every checkpoint.
+* Not aware of any right now.
 
