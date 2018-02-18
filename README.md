@@ -27,9 +27,6 @@ Copy the following items into the 'Grand Theft Auto V/scripts' directory.
 * Show time of current lap on the hud.
 * Show fastest laptime this race on the hud.
 * Record Race Results for stats purposes. Such as fasted time on this time trial.
-* Remove Falling out of cars when in race.
-* Make player invincable while in race.
-* Add option to turn vehicle damage on/off.
 
 
 ### Bugs:
