@@ -55,9 +55,9 @@
     <Compile Include="TimeTrialData\SetupData.cs" />
     <Compile Include="TimeTrialState\Checkpoint.cs" />
     <Compile Include="EditorState\EditorState.cs" />
-    <Compile Include="EditorState\EditorUI.cs" />
+    <Compile Include="EditorState\GUI\EditorMenu.cs" />
     <Compile Include="MainMenuState\MainMenuState.cs" />
-    <Compile Include="MainMenuState\MainMenuUI.cs" />
+    <Compile Include="MainMenuState\GUI\MainMenu.cs" />
     <Compile Include="NativeMenu\Menu.cs" />
     <Compile Include="StateMachine\State.cs" />
     <Compile Include="StateMachine\StateMachine.cs" />
@@ -68,15 +68,17 @@
     <Compile Include="TimeTrialData\TimeTrialData.cs" />
     <Compile Include="TimeTrialData\TimeTrialFile.cs" />
     <Compile Include="TimeTrialSetupState\TimeTrialSetupState.cs" />
-    <Compile Include="TimeTrialSetupState\TimeTrialSetupUI.cs" />
+    <Compile Include="TimeTrialSetupState\GUI\SetupMenu.cs" />
     <Compile Include="TimeTrialState\CheckpointManager.cs" />
     <Compile Include="TimeTrialState\Countdown.cs" />
+    <Compile Include="TimeTrialState\GUI\TimeTrialHUD.cs" />
+    <Compile Include="TimeTrialState\GUI\TimeTrialMessager.cs" />
     <Compile Include="TimeTrialState\LapManager.cs" />
     <Compile Include="TimeTrialState\PlayerManager.cs" />
     <Compile Include="TimeTrialState\TimeManager.cs" />
     <Compile Include="TimeTrialState\TimeTrialAudio.cs" />
     <Compile Include="TimeTrialState\TimeTrialState.cs" />
-    <Compile Include="TimeTrialState\TimeTrialUI.cs" />
+    <Compile Include="TimeTrialState\GUI\InRaceMenu.cs" />
     <Compile Include="TimeTrialState\WorldManager.cs" />
   </ItemGroup>
   <ItemGroup>

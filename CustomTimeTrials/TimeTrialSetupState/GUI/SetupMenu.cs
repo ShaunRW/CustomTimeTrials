@@ -9,9 +9,9 @@ using GTA;
 using CustomTimeTrials.NativeMenu;
 using CustomTimeTrials.TimeTrialData;
 
-namespace CustomTimeTrials.TimeTrialSetupState
+namespace CustomTimeTrials.TimeTrialSetupState.GUI
 {
-    class TimeTrialSetupUI
+    class SetupMenu
     {
         private NativeMenu.Menu menu;
 

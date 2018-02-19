@@ -21,9 +21,8 @@ namespace CustomTimeTrials
 
         public CustomTimeTrials()
         {
-            UI.Notify("Custom Time Trials 1.1 by ShaunRW!");
+            UI.Notify(string.Format("Custom Time Trials {0} by ShaunRW!", this.GetFriendlyVersionNumber()));
 
-            // this.mode = new InactiveMode(this.keyPressTracker);
             this.stateMachine = new StateMachine.StateMachine(new InactiveState.InactiveState());
 
             this.Tick += onTick;
@@ -44,6 +43,12 @@ namespace CustomTimeTrials
         private void onKeyUp(object sender, KeyEventArgs e)
         {
             this.stateMachine.onKeyUp(e);
+        }
+
+        private string GetFriendlyVersionNumber()
+        {
+            Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            return string.Format("v{0}.{1}.{2}", version.Major, version.Minor, version.Build);
         }
     }
 }

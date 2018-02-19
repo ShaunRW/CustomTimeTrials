@@ -15,7 +15,7 @@ namespace CustomTimeTrials.TimeTrialSetupState
     {
         // utility properties
         private State newState;
-        private TimeTrialSetupUI setupUI = new TimeTrialSetupUI();
+        private GUI.SetupMenu setupMenu = new GUI.SetupMenu();
 
         // data properties
         private TimeTrialData.TimeTrialSaveData timeTrialData;
@@ -23,12 +23,12 @@ namespace CustomTimeTrials.TimeTrialSetupState
         public TimeTrialSetupState(TimeTrialData.TimeTrialSaveData raceData)
         {
             this.timeTrialData = raceData;
-            this.setupUI.CreateMenu(raceData.displayName, raceData.type, this.onMenuExit, this.onStart);
+            this.setupMenu.CreateMenu(raceData.displayName, raceData.type, this.onMenuExit, this.onStart);
         }
 
         public override State onTick()
         {
-            this.setupUI.UpdateMenu();
+            this.setupMenu.UpdateMenu();
             return this.newState;
         }
 
@@ -42,20 +42,20 @@ namespace CustomTimeTrials.TimeTrialSetupState
             timeTrialSetup.lapCount = 0;
             if (this.timeTrialData.type == "circuit")
             {
-                timeTrialSetup.lapCount = this.setupUI.GetSelectedLapCount();
+                timeTrialSetup.lapCount = this.setupMenu.GetSelectedLapCount();
             }
 
             // get selected time of day.
-            timeTrialSetup.timeOfDay = this.setupUI.GetSelectedTimeOfDay();
+            timeTrialSetup.timeOfDay = this.setupMenu.GetSelectedTimeOfDay();
 
             // get selected weather.
-            timeTrialSetup.weather = this.setupUI.GetSelectedWeather();
+            timeTrialSetup.weather = this.setupMenu.GetSelectedWeather();
 
             // Get vehicle damage setting
-            timeTrialSetup.vehicleDamageOn = this.setupUI.GetSelectedVehicleDamage();
+            timeTrialSetup.vehicleDamageOn = this.setupMenu.GetSelectedVehicleDamage();
 
             // get traffic setting
-            timeTrialSetup.trafficOn = this.setupUI.GetSelectedTrafficOption();
+            timeTrialSetup.trafficOn = this.setupMenu.GetSelectedTrafficOption();
 
             this.newState = new TimeTrialState.TimeTrialState(this.timeTrialData, timeTrialSetup);
         }

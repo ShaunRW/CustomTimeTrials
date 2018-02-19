@@ -18,7 +18,7 @@ namespace CustomTimeTrials.EditorState
     {
         // untilitiy properties
         private State newState;
-        private EditorUI editorUI = new EditorUI();
+        private GUI.EditorMenu editorMenu = new GUI.EditorMenu();
 
         // data
         private TimeTrialData.TimeTrialSaveData data = new TimeTrialData.TimeTrialSaveData();
@@ -26,12 +26,12 @@ namespace CustomTimeTrials.EditorState
 
         public EditorState()
         {
-            this.editorUI.CreateMenu(this.onMenuExit, this.onAddCheckpoint, this.onRemoveLastCheckpoint, this.onRemoveAllCheckpoints, this.onSaveTimeTrial);   
+            this.editorMenu.CreateMenu(this.onMenuExit, this.onAddCheckpoint, this.onRemoveLastCheckpoint, this.onRemoveAllCheckpoints, this.onSaveTimeTrial);   
         }
 
         public override State onTick()
         {
-            this.editorUI.UpdateMenu();
+            this.editorMenu.UpdateMenu();
             this.DrawCheckpointMarkers();
             return this.newState;
         }
@@ -81,7 +81,7 @@ namespace CustomTimeTrials.EditorState
         private void onSaveTimeTrial()
         {
             this.data.displayName = Game.GetUserInput("Untitled Time Trial", 40);
-            this.data.type = this.editorUI.GetRaceType().ToLower();
+            this.data.type = this.editorMenu.GetRaceType().ToLower();
 
             // Put the data in a file object and save it
             TimeTrialFile newFile = new TimeTrialData.TimeTrialFile();
