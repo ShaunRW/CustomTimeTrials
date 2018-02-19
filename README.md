@@ -1,7 +1,6 @@
-# Custom Time Trials #
+# Custom Time Trials v0.1.0 #
 Adds a new time trial racing mode to GTA V. Also includes an editor to create the time trials.
 
-Version: v0.1.0
 
 ### Requires: ###
 
