@@ -178,7 +178,7 @@ namespace CustomTimeTrials.TimeTrialState
             }
         }
 
-        private void ResetStates()
+        private void UnloadTimeTrial()
         {
             // player can die again and vehicle can get damaged
             this.player.CantDie(false);
@@ -242,7 +242,7 @@ namespace CustomTimeTrials.TimeTrialState
 
         private void ExitTimeTrial()
         {
-            this.ResetStates();
+            this.UnloadTimeTrial();
             this.newState = new InactiveState.InactiveState();
         }
     }
