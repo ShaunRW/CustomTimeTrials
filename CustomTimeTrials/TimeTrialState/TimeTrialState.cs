@@ -226,24 +226,35 @@ namespace CustomTimeTrials.TimeTrialState
 
 
 
-
-        private void onInRaceMenuExit()
-        {
-            /* Do nothing:
+        /* Do nothing:
              *  this method needs to be passed to the InRaceMenu,
              *  but since we don't want anything to happen we leave this empty.
              */
-        }
+        private void onInRaceMenuExit() { }
 
         private void RestartTimeTrial()
         {
-            // todo: this
+            this.messager.Notify("Restarted Time Trial", true);
+            this.ExitTimeTrial(new TimeTrialState(this.timeTrialData, this.setup));
         }
 
+        /* 
+         * this is a wrapper so it can be used as an Action argument.
+         */
         private void ExitTimeTrial()
         {
+            this.ExitTimeTrial(null);
+        }
+
+        private void ExitTimeTrial(State newState)
+        {
             this.UnloadTimeTrial();
-            this.newState = new InactiveState.InactiveState();
+
+            if (newState == null)
+            {
+                newState = new InactiveState.InactiveState();
+            }
+            this.newState = newState;
         }
     }
 }
