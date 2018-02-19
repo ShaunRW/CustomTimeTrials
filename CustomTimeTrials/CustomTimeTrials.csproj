@@ -71,12 +71,13 @@
     <Compile Include="TimeTrialSetupState\TimeTrialSetupUI.cs" />
     <Compile Include="TimeTrialState\CheckpointManager.cs" />
     <Compile Include="TimeTrialState\Countdown.cs" />
+    <Compile Include="TimeTrialState\GUI\TimeTrialHUD.cs" />
+    <Compile Include="TimeTrialState\GUI\TimeTrialMessager.cs" />
     <Compile Include="TimeTrialState\LapManager.cs" />
     <Compile Include="TimeTrialState\PlayerManager.cs" />
     <Compile Include="TimeTrialState\TimeManager.cs" />
     <Compile Include="TimeTrialState\TimeTrialAudio.cs" />
     <Compile Include="TimeTrialState\TimeTrialState.cs" />
-    <Compile Include="TimeTrialState\TimeTrialUI.cs" />
     <Compile Include="TimeTrialState\GUI\InRaceMenu.cs" />
     <Compile Include="TimeTrialState\WorldManager.cs" />
   </ItemGroup>

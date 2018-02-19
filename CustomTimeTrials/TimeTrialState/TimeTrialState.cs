@@ -31,7 +31,8 @@ namespace CustomTimeTrials.TimeTrialState
 
         private KeyPressTracker keyPressTracker = new KeyPressTracker();
 
-        private TimeTrialUI timeTrialUI = new TimeTrialUI();
+        private GUI.TimeTrialMessager messager = new GUI.TimeTrialMessager();
+        private GUI.TimeTrialHUD HUD = new GUI.TimeTrialHUD();
         private GUI.InRaceMenu inRaceMenu;
 
 
@@ -67,7 +68,8 @@ namespace CustomTimeTrials.TimeTrialState
             }
 
             // draw hud to the screen
-            this.timeTrialUI.UpdateHUD();
+            this.HUD.Update();
+
 
             // handle the in race menu
             this.inRaceMenu.Update();
@@ -146,10 +148,10 @@ namespace CustomTimeTrials.TimeTrialState
              * Setup Hud.
              *  - Should this be here or in the constructor.
              */
-            this.timeTrialUI.SetupTimeHud();
+            this.HUD.SetupTimeHud();
             if (this.lapManager.isCircuit)
             {
-                this.timeTrialUI.SetupLapHud(this.lapManager.ToString());
+                this.HUD.SetupLapHud(this.lapManager.ToString());
             }
         }
         
@@ -166,7 +168,7 @@ namespace CustomTimeTrials.TimeTrialState
 
         private void UpdateTimeTrial()
         {
-            this.timeTrialUI.SetHUDTime(this.time.Format());
+            this.HUD.SetTime(this.time.Format());
             this.checkpointManager.Update(this.lapManager.onLast);
 
             this.player.HealPlayerIfDamaged();
@@ -208,7 +210,7 @@ namespace CustomTimeTrials.TimeTrialState
         private void onNewLap()
         {
             this.audioManager.PlayCheckpointReachedSound();
-            this.timeTrialUI.SetHUDLap(this.lapManager.ToString());
+            this.HUD.SetLap(this.lapManager.ToString());
         }
 
         private void onFinish()
@@ -216,8 +218,8 @@ namespace CustomTimeTrials.TimeTrialState
             // do something with the race data
             string time = this.time.Format(true);
             this.audioManager.PlayRaceFinishedSound();
-            this.timeTrialUI.ShowFinishedScreen("Finished", time);
-            this.timeTrialUI.ShowFinishedNotification( this.timeTrialData.displayName, time, this.lapManager.count);
+            this.messager.ShowFinishedScreen("Finished", time);
+            this.messager.ShowFinishedNotification( this.timeTrialData.displayName, time, this.lapManager.count);
 
             this.ExitTimeTrial();
         }

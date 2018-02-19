@@ -9,7 +9,7 @@ namespace CustomTimeTrials.TimeTrialState
     class Countdown
     {
 
-        private TimeTrialUI timeTrialUI = new TimeTrialUI();
+        private GUI.TimeTrialMessager messager = new GUI.TimeTrialMessager();
         private TimeTrialAudio audioManager = new TimeTrialAudio();
 
         private TimeManager time;
@@ -35,7 +35,7 @@ namespace CustomTimeTrials.TimeTrialState
             {
                 this.currentStep -= 1;
 
-                this.timeTrialUI.ShowCountdownMessage(this.currentStep);
+                this.messager.ShowCountdownMessage(this.currentStep);
                 this.audioManager.PlayCountdownBeep();
 
                 if (this.currentStep == 0)
