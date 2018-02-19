@@ -55,7 +55,7 @@
     <Compile Include="TimeTrialData\SetupData.cs" />
     <Compile Include="TimeTrialState\Checkpoint.cs" />
     <Compile Include="EditorState\EditorState.cs" />
-    <Compile Include="EditorState\EditorUI.cs" />
+    <Compile Include="EditorState\GUI\EditorMenu.cs" />
     <Compile Include="MainMenuState\MainMenuState.cs" />
     <Compile Include="MainMenuState\GUI\MainMenu.cs" />
     <Compile Include="NativeMenu\Menu.cs" />
