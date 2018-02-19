@@ -26,7 +26,7 @@ Copy the following items into the 'Grand Theft Auto V/scripts' directory.
 ### Todo: ###
 
 ##### Planned for v0.1.x: #####
-* Add a way to exit out of a time trial whenever.
+
 
 ##### Planned: #####
 * Show time of current lap on the hud.
