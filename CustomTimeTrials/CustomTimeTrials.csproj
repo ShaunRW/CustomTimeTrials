@@ -57,7 +57,7 @@
     <Compile Include="EditorState\EditorState.cs" />
     <Compile Include="EditorState\EditorUI.cs" />
     <Compile Include="MainMenuState\MainMenuState.cs" />
-    <Compile Include="MainMenuState\MainMenuUI.cs" />
+    <Compile Include="MainMenuState\GUI\MainMenu.cs" />
     <Compile Include="NativeMenu\Menu.cs" />
     <Compile Include="StateMachine\State.cs" />
     <Compile Include="StateMachine\StateMachine.cs" />

@@ -17,16 +17,16 @@ namespace CustomTimeTrials.MainMenuState
     class MainMenuState : StateMachine.State
     {
         private State newState = null;
-        private MainMenuUI mainMenuUI = new MainMenuUI();
+        private GUI.MainMenu mainMenu = new GUI.MainMenu();
 
         public MainMenuState()
         {
-            this.mainMenuUI.CreateMenu(this.onMenuExit, this.onSelectStartTimeTrial, this.onSelectEditor);
+            this.mainMenu.CreateMenu(this.onMenuExit, this.onSelectStartTimeTrial, this.onSelectEditor);
         }
 
         public override State onTick()
         {
-            this.mainMenuUI.UpdateMenu();
+            this.mainMenu.UpdateMenu();
             return this.newState;
         }
 
@@ -36,7 +36,7 @@ namespace CustomTimeTrials.MainMenuState
         private void onSelectStartTimeTrial()
         {
             // load the selected time trial data
-            string timeTrial = this.mainMenuUI.GetSelectedTimeTrial();
+            string timeTrial = this.mainMenu.GetSelectedTimeTrial();
             TimeTrialData.TimeTrialFile file = new TimeTrialData.TimeTrialFile();
             file.load(timeTrial);
 

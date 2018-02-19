@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 using CustomTimeTrials.NativeMenu;
 
-namespace CustomTimeTrials.MainMenuState
+namespace CustomTimeTrials.MainMenuState.GUI
 {
-    class MainMenuUI
+    class MainMenu
     {
         private NativeMenu.Menu menu;
 
