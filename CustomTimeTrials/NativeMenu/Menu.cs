@@ -80,11 +80,21 @@ namespace CustomTimeTrials.NativeMenu
 
         public void Show()
         {
-            if (this.menu.Visible == false)
+           if (this.menu.Visible == false)
             {
-                this.menu.RefreshIndex();
-                this.menu.Visible = true;
+                this.SetMenuIsReady();
+                this.Toggle();
             }
+        }
+
+        public void Toggle()
+        {
+            this.menu.Visible = !this.menu.Visible;
+        }
+
+        public void SetMenuIsReady()
+        {
+            this.menu.RefreshIndex();
         }
 
         public void Update()

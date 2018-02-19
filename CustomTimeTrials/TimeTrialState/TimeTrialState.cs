@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Forms;
 using CustomTimeTrials.StateMachine;
 using CustomTimeTrials.TimeTrialData;
 
@@ -17,18 +17,22 @@ namespace CustomTimeTrials.TimeTrialState
         private enum InternalState {Countdown, Race}
         private InternalState innerState;
 
-        private TimeTrialUI timeTrialUI = new TimeTrialUI();
-
         private Countdown countdown = new Countdown(4, 1500);
 
-        private TimeManager time;
         private TimeTrialData.TimeTrialSaveData timeTrialData;
         private TimeTrialData.SetupData setup;
         private LapManager lapManager;
+
+        private TimeManager time;
         private CheckpointManager checkpointManager;
         private WorldManager world = new WorldManager();
         private PlayerManager player = new PlayerManager();
         private TimeTrialAudio audioManager = new TimeTrialAudio();
+
+        private KeyPressTracker keyPressTracker = new KeyPressTracker();
+
+        private TimeTrialUI timeTrialUI = new TimeTrialUI();
+        private GUI.InRaceMenu inRaceMenu;
 
 
         public TimeTrialState(TimeTrialData.TimeTrialSaveData data, TimeTrialData.SetupData setup)
@@ -36,12 +40,9 @@ namespace CustomTimeTrials.TimeTrialState
             // init time trial data and checkpoints
             this.timeTrialData = data;
             this.setup = setup;
-            this.checkpointManager = new CheckpointManager(this.onCheckpointReached, this.onLapComplete);
 
-            // Process the setup data
-            this.lapManager = new LapManager(this.setup.lapCount, data.type, this.onNewLap, this.onFinish);
-            this.world.SetTimeOfDay(this.setup.timeOfDay);
-            this.world.SetWeather(this.setup.weather);
+            // In Race Menu
+            this.inRaceMenu = new GUI.InRaceMenu(this.onInRaceMenuExit, this.RestartTimeTrial, this.ExitTimeTrial);
 
             // setup the time trial
             this.SetupTimeTrial();
@@ -52,6 +53,7 @@ namespace CustomTimeTrials.TimeTrialState
 
         public override State onTick()
         {
+            // update the countdown or time trial state.
             if (this.innerState == InternalState.Race)
             {
                 this.UpdateTimeTrial();
@@ -63,8 +65,35 @@ namespace CustomTimeTrials.TimeTrialState
                     this.BeginTimeTrial();
                 }
             }
+
+            // draw hud to the screen
             this.timeTrialUI.UpdateHUD();
+
+            // handle the in race menu
+            this.inRaceMenu.Update();
+
             return this.newState;
+        }
+
+        public override State onKeyDown(KeyEventArgs e)
+        {
+            bool justPressed = this.keyPressTracker.update(e.KeyCode, true);
+
+            if (justPressed && e.KeyCode == Keys.F9)
+            {
+                this.inRaceMenu.Toggle();
+            }
+
+            return this.newState;
+        }
+
+        /*
+         * this is needed so the keypress tracker can update the key states,
+         */
+        public override State onKeyUp(KeyEventArgs e)
+        {
+            bool justPressed = this.keyPressTracker.update(e.KeyCode, false);
+            return null;
         }
 
 
@@ -80,29 +109,51 @@ namespace CustomTimeTrials.TimeTrialState
 
         private void SetupTimeTrial()
         {
+            /*
+             * Setup Race Data
+             */
+            this.lapManager = new LapManager(this.setup.lapCount, this.timeTrialData.type, this.onNewLap, this.onFinish);
+            
+            // Load Checkpoints
+            this.checkpointManager = new CheckpointManager(this.onCheckpointReached, this.onLapComplete);
             this.checkpointManager.Load(this.timeTrialData);
 
-            this.player.MoveVehicleTo(this.timeTrialData.start.position.ToGtaVector3(), this.timeTrialData.start.rotation.ToGtaVector3());
+            // Show initial checkpoints
+            this.checkpointManager.Show(1, CheckpointIcon.Arrow);
+            this.checkpointManager.ShowFutureBlip();
 
-            this.player.CantDie();
-            this.player.SetVehicleDamageOn(this.setup.vehicleDamageOn);
 
+            /*
+             * Setup Environment
+             */
+            this.world.SetWeather(this.setup.weather);
+            this.world.SetTimeOfDay(this.setup.timeOfDay);
             if (this.setup.trafficOn == false)
             {
                 this.world.SetTrafficOff();
             }
 
-            this.checkpointManager.Show(1, CheckpointIcon.Arrow);
-            this.checkpointManager.ShowFutureBlip();
 
+            /*
+             * Setup Player and Vehicle
+             */
+            this.player.CantDie();
+            this.player.MoveVehicleTo(this.timeTrialData.start.position.ToGtaVector3(), this.timeTrialData.start.rotation.ToGtaVector3());
+            this.player.SetVehicleDamageOn(this.setup.vehicleDamageOn);
+
+
+            /*
+             * Setup Hud.
+             *  - Should this be here or in the constructor.
+             */
             this.timeTrialUI.SetupTimeHud();
             if (this.lapManager.isCircuit)
             {
                 this.timeTrialUI.SetupLapHud(this.lapManager.ToString());
             }
-
         }
         
+
         private void BeginTimeTrial()
         {
             this.innerState = InternalState.Race;
@@ -127,13 +178,18 @@ namespace CustomTimeTrials.TimeTrialState
 
         private void ResetStates()
         {
+            // player can die again and vehicle can get damaged
             this.player.CantDie(false);
             this.player.SetVehicleDamageOn();
 
+            // if traffic was turned off, turn it back on again.
             if (this.setup.trafficOn == false)
             {
                 this.world.SetTrafficOn();
             }
+
+            // remove all checkpoints.
+            this.checkpointManager.UnloadAllCheckpoints();
         }
 
 
@@ -163,8 +219,28 @@ namespace CustomTimeTrials.TimeTrialState
             this.timeTrialUI.ShowFinishedScreen("Finished", time);
             this.timeTrialUI.ShowFinishedNotification( this.timeTrialData.displayName, time, this.lapManager.count);
 
-            this.ResetStates();
+            this.ExitTimeTrial();
+        }
 
+
+
+
+        private void onInRaceMenuExit()
+        {
+            /* Do nothing:
+             *  this method needs to be passed to the InRaceMenu,
+             *  but since we don't want anything to happen we leave this empty.
+             */
+        }
+
+        private void RestartTimeTrial()
+        {
+            // todo: this
+        }
+
+        private void ExitTimeTrial()
+        {
+            this.ResetStates();
             this.newState = new InactiveState.InactiveState();
         }
     }
