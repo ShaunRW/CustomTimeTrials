@@ -1,6 +1,7 @@
 # Custom Time Trials #
 Adds a new time trial racing mode to GTA V. Also includes an editor to create the time trials.
-Version: v0.0
+
+Version: v0.0.0
 
 ### Requires: ###
 
@@ -24,7 +25,7 @@ Copy the following items into the 'Grand Theft Auto V/scripts' directory.
 
 ### Todo: ###
 
-##### Planned for v0.1: #####
+##### Planned for v0.1.x: #####
 * Add a way to exit out of a time trial whenever.
 
 ##### Planned: #####
