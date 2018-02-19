@@ -23,6 +23,7 @@ namespace CustomTimeTrials.TimeTrialState
 
         private TimeManager time;
         private TimeTrialData.TimeTrialSaveData timeTrialData;
+        private TimeTrialData.SetupData setup;
         private LapManager lapManager;
         private CheckpointManager checkpointManager;
         private WorldManager world = new WorldManager();
@@ -34,11 +35,13 @@ namespace CustomTimeTrials.TimeTrialState
         {
             // init time trial data and checkpoints
             this.timeTrialData = data;
+            this.setup = setup;
             this.checkpointManager = new CheckpointManager(this.onCheckpointReached, this.onLapComplete);
 
             // Process the setup data
-            this.lapManager = new LapManager(setup.lapCount, data.type, this.onNewLap, this.onFinish);
-            this.world.SetTimeOfDay(setup.timeOfDay);
+            this.lapManager = new LapManager(this.setup.lapCount, data.type, this.onNewLap, this.onFinish);
+            this.world.SetTimeOfDay(this.setup.timeOfDay);
+            this.world.SetWeather(this.setup.weather);
 
             // setup the time trial
             this.SetupTimeTrial();
@@ -81,6 +84,14 @@ namespace CustomTimeTrials.TimeTrialState
 
             this.player.MoveVehicleTo(this.timeTrialData.start.position.ToGtaVector3(), this.timeTrialData.start.rotation.ToGtaVector3());
 
+            this.player.CantDie();
+            this.player.SetVehicleDamageOn(this.setup.vehicleDamageOn);
+
+            if (this.setup.trafficOn == false)
+            {
+                this.world.SetTrafficOff();
+            }
+
             this.checkpointManager.Show(1, CheckpointIcon.Arrow);
             this.checkpointManager.ShowFutureBlip();
 
@@ -106,6 +117,23 @@ namespace CustomTimeTrials.TimeTrialState
         {
             this.timeTrialUI.SetHUDTime(this.time.Format());
             this.checkpointManager.Update(this.lapManager.onLast);
+
+            this.player.HealPlayerIfDamaged();
+            if (!this.setup.vehicleDamageOn)
+            {
+                this.player.FixVehicleIfDamaged();
+            }
+        }
+
+        private void ResetStates()
+        {
+            this.player.CantDie(false);
+            this.player.SetVehicleDamageOn();
+
+            if (this.setup.trafficOn == false)
+            {
+                this.world.SetTrafficOn();
+            }
         }
 
 
@@ -135,6 +163,7 @@ namespace CustomTimeTrials.TimeTrialState
             this.timeTrialUI.ShowFinishedScreen("Finished", time);
             this.timeTrialUI.ShowFinishedNotification( this.timeTrialData.displayName, time, this.lapManager.count);
 
+            this.ResetStates();
 
             this.newState = new InactiveState.InactiveState();
         }

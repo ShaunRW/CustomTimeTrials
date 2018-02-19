@@ -23,11 +23,19 @@ Copy the following items into the 'Grand Theft Auto V/scripts' directory.
 
 ### Todo:
 
+Planned:
 * Add a way to exit out of a time trial whenever.
 * Show time of current lap on the hud.
 * Show fastest laptime this race on the hud.
 * Record Race Results for stats purposes. Such as fasted time on this time trial.
-* Remove Falling out of cars when in race.
-* Make player invincable while in race.
-* Add Weather option before race.
-* Add option to turn vehicle damage on/off.
+* Add Race Option for police. eg, Disabled, Allowed, Always [1-5] star.
+
+Maybe:
+* Add traffic levels to the Traffic option. eg, Off, Light, Moderate, heavy, etc
+* Disable missions while racing. Not sure if this is possible.
+
+
+### Bugs:
+
+* With traffic set to off, a very small number of vehicles still spawn. Might need to remove them on the fly every so many frames.
+

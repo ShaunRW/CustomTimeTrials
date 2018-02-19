@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using GTA;
+
 using CustomTimeTrials.NativeMenu;
+using CustomTimeTrials.TimeTrialData;
 
 namespace CustomTimeTrials.TimeTrialSetupState
 {
@@ -21,6 +24,9 @@ namespace CustomTimeTrials.TimeTrialSetupState
                 this.menu.AddListButton("Laps", this.GenerateLapsOptions());
             }
             this.menu.AddListButton("Time of Day", this.GenerateTimeOfDayOptions());
+            this.menu.AddListButton("Weather", this.GenerateWeatherOptions());
+            this.menu.AddListButton("Vehicle Damage", new List<dynamic>{"On", "Off"});
+            this.menu.AddListButton("Traffic", new List<dynamic> { "On", "Off" });
             this.menu.AddButton("Start", onStartCallback);
 
             this.menu.Show();
@@ -36,9 +42,32 @@ namespace CustomTimeTrials.TimeTrialSetupState
             return this.menu.GetSelectedItem("Laps");
         }
 
-        public string GetSelectedTimeOfDay()
+        public TimeTrialData.TimeOfDay GetSelectedTimeOfDay()
         {
             return this.menu.GetSelectedItem("Time of Day");
+        }
+
+        public Weather GetSelectedWeather()
+        {
+            return this.menu.GetSelectedItem("Weather");
+        }
+
+        public bool GetSelectedVehicleDamage()
+        {
+            if (this.menu.GetSelectedItem("Vehicle Damage") == "On")
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool GetSelectedTrafficOption()
+        {
+            if (this.menu.GetSelectedItem("Traffic") == "On")
+            {
+                return true;
+            }
+            return false;
         }
 
         private List<dynamic> GenerateLapsOptions(int min = 1, int max = 100)
@@ -53,16 +82,30 @@ namespace CustomTimeTrials.TimeTrialSetupState
 
         private List<dynamic> GenerateTimeOfDayOptions()
         {
-            List<dynamic> times = new List<dynamic>();
-            times.Add("Midnight");
-            times.Add("Pre-Dawn");
-            times.Add("Dawn");
-            times.Add("Morning");
-            times.Add("Noon");
-            times.Add("Afternoon");
-            times.Add("Sunset");
-            times.Add("Dusk");
+            var times = new List<dynamic>();
+            times.Add(TimeTrialData.TimeOfDay.Morning);
+            times.Add(TimeTrialData.TimeOfDay.Noon);
+            times.Add(TimeTrialData.TimeOfDay.Afternoon);
+            times.Add(TimeTrialData.TimeOfDay.Sunset);
+            times.Add(TimeTrialData.TimeOfDay.Dusk);
+            times.Add(TimeTrialData.TimeOfDay.Midnight);
+            times.Add(TimeTrialData.TimeOfDay.PreDawn);
+            times.Add(TimeTrialData.TimeOfDay.Dawn);
             return times;
+        }
+
+        private List<dynamic> GenerateWeatherOptions()
+        {
+            var weather = new List<dynamic>();
+            weather.Add(Weather.Clear);
+            weather.Add(Weather.ExtraSunny);
+            weather.Add(Weather.Clouds);
+            weather.Add(Weather.Overcast);
+            weather.Add(Weather.Raining);
+            weather.Add(Weather.ThunderStorm);
+            weather.Add(Weather.Snowing);
+            weather.Add(Weather.Blizzard);
+            return weather;
         }
     }
 }
