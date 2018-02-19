@@ -68,7 +68,7 @@
     <Compile Include="TimeTrialData\TimeTrialData.cs" />
     <Compile Include="TimeTrialData\TimeTrialFile.cs" />
     <Compile Include="TimeTrialSetupState\TimeTrialSetupState.cs" />
-    <Compile Include="TimeTrialSetupState\TimeTrialSetupUI.cs" />
+    <Compile Include="TimeTrialSetupState\GUI\SetupMenu.cs" />
     <Compile Include="TimeTrialState\CheckpointManager.cs" />
     <Compile Include="TimeTrialState\Countdown.cs" />
     <Compile Include="TimeTrialState\GUI\TimeTrialHUD.cs" />
