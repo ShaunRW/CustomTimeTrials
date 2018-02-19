@@ -1,7 +1,7 @@
 # Custom Time Trials #
 Adds a new time trial racing mode to GTA V. Also includes an editor to create the time trials.
 
-Version: v0.0.0
+Version: v0.1.0
 
 ### Requires: ###
 
@@ -21,17 +21,19 @@ Copy the following items into the 'Grand Theft Auto V/scripts' directory.
 ### How to use: ###
 
 * Once in-game, press F9 to access the menu. from here you can select the time trial you wish to start, or if you wish to create your own time trial using the editor.
+* While in a time trial, press F9 to access the in race menu. From here you can exit or restart the time trial.
 
 
 ### Todo: ###
 
-##### Planned for v0.1.x: #####
-
-
-##### Planned: #####
+##### Planned for v0.2.0: #####
 * Show time of current lap on the hud.
 * Show fastest laptime this race on the hud.
+
+##### Planned for v1.0.0 #####
 * Record Race Results for stats purposes. Such as fasted time on this time trial.
+
+##### Planned: #####
 * Add Race Option for police. eg, Disabled, Allowed, Always [1-5] star.
 
 ##### Ideas: #####
