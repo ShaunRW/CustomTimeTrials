@@ -175,6 +175,12 @@ namespace CustomTimeTrials.TimeTrialState
         private void UpdateTimeTrial()
         {
             this.HUD.SetTime(this.time.ToString());
+            if (this.timeTrialData.type == "circuit")
+            {
+                this.HUD.SetLapTime(TimeManager.Format(this.lapManager.currentLapTime));
+            }
+
+
             this.checkpointManager.Update(this.lapManager.onLast);
 
             this.player.HealPlayerIfDamaged();
@@ -217,6 +223,7 @@ namespace CustomTimeTrials.TimeTrialState
         {
             this.audioManager.PlayCheckpointReachedSound();
             this.HUD.SetLap(this.lapManager.ToString());
+            this.HUD.SetFastestTime(TimeManager.Format(this.lapManager.fastestLapTime));
         }
 
         private void onFinish()

@@ -24,6 +24,13 @@ namespace CustomTimeTrials.TimeTrialState
         private Action onRaceFinishedCallback;
         private Action onNewLapCallback;
 
+        private TimeManager lapTimer = new TimeManager();
+        public int currentLapTime
+        {
+            get { return this.lapTimer.elapsed; }
+        }
+        public int fastestLapTime { get; private set; }
+
         public LapManager(int lapCount, string raceType, Action onNewLapCallback, Action onRaceFinishedCallback)
         {
             this.count = lapCount;
@@ -36,11 +43,10 @@ namespace CustomTimeTrials.TimeTrialState
 
         public void AddLap()
         {
-            this.current += 1;
+            this.UpdateFastestLapTime();
+            this.lapTimer.Reset();
 
-            // Get lap time.
-            // compare with fastest laptime and set new fastest if needed.
-            // reset laptimer
+            this.current += 1;
 
             this.onNewLapCallback();
         }
@@ -74,6 +80,14 @@ namespace CustomTimeTrials.TimeTrialState
             else
             {
                 return "N/A";
+            }
+        }
+
+        public void UpdateFastestLapTime()
+        {
+            if (this.current == 1 || this.currentLapTime < this.fastestLapTime)
+            {
+                this.fastestLapTime = this.currentLapTime;
             }
         }
     }
