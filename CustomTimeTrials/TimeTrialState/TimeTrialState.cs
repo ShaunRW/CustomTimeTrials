@@ -151,6 +151,8 @@ namespace CustomTimeTrials.TimeTrialState
             this.HUD.SetupTimeHud();
             if (this.lapManager.isCircuit)
             {
+                this.HUD.SetupLapTimeHud();
+                this.HUD.SetupFastestLapTimeHud();
                 this.HUD.SetupLapHud(this.lapManager.ToString());
             }
         }
@@ -169,7 +171,7 @@ namespace CustomTimeTrials.TimeTrialState
 
         private void UpdateTimeTrial()
         {
-            this.HUD.SetTime(this.time.Format());
+            this.HUD.SetTime(this.time.ToString());
             this.checkpointManager.Update(this.lapManager.onLast);
 
             this.player.HealPlayerIfDamaged();
@@ -217,7 +219,7 @@ namespace CustomTimeTrials.TimeTrialState
         private void onFinish()
         {
             // do something with the race data
-            string time = this.time.Format(true);
+            string time = this.time.ToString(true);
             this.audioManager.PlayRaceFinishedSound();
             this.messager.ShowFinishedScreen("Finished", time);
             this.messager.ShowFinishedNotification( this.timeTrialData.displayName, time, this.lapManager.count);
