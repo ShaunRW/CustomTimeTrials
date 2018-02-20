@@ -148,10 +148,17 @@ namespace CustomTimeTrials.TimeTrialState
              * Setup Hud.
              *  - Should this be here or in the constructor.
              */
-            this.HUD.SetupTimeHud();
+            
             if (this.lapManager.isCircuit)
             {
-                this.HUD.SetupLapHud(this.lapManager.ToString());
+                this.HUD.SetupFastestLapTimeHud();
+                this.HUD.SetupLapTimeHud();
+                this.HUD.SetupTimeHud();
+                this.HUD.SetupLapHud(this.lapManager.ToString());  
+            }
+            else
+            {
+                this.HUD.SetupTimeHud();
             }
         }
         
@@ -161,6 +168,10 @@ namespace CustomTimeTrials.TimeTrialState
             this.innerState = InternalState.Race;
             this.player.UnfreezePlayer();
             this.time = new TimeManager();
+            if (this.timeTrialData.type == "circuit")
+            {
+                this.lapManager.AddLap();
+            }
             this.audioManager.PlayRaceBeginSound();
         }
 
@@ -168,7 +179,13 @@ namespace CustomTimeTrials.TimeTrialState
 
         private void UpdateTimeTrial()
         {
-            this.HUD.SetTime(this.time.Format());
+            this.HUD.SetTime(this.time.ToString());
+            if (this.timeTrialData.type == "circuit")
+            {
+                this.HUD.SetLapTime(TimeManager.Format(this.lapManager.currentLapTime));
+            }
+
+
             this.checkpointManager.Update(this.lapManager.onLast);
 
             this.player.HealPlayerIfDamaged();
@@ -211,12 +228,13 @@ namespace CustomTimeTrials.TimeTrialState
         {
             this.audioManager.PlayCheckpointReachedSound();
             this.HUD.SetLap(this.lapManager.ToString());
+            this.HUD.SetFastestTime(TimeManager.Format(this.lapManager.fastestLapTime));
         }
 
         private void onFinish()
         {
             // do something with the race data
-            string time = this.time.Format(true);
+            string time = this.time.ToString(true);
             this.audioManager.PlayRaceFinishedSound();
             this.messager.ShowFinishedScreen("Finished", time);
             this.messager.ShowFinishedNotification( this.timeTrialData.displayName, time, this.lapManager.count);

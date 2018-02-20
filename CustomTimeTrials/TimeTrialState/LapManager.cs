@@ -22,16 +22,33 @@ namespace CustomTimeTrials.TimeTrialState
         }
 
         private Action onRaceFinishedCallback;
-        private Action onNewLapCallback; 
+        private Action onNewLapCallback;
+
+        private TimeManager lapTimer = new TimeManager();
+        public int currentLapTime
+        {
+            get { return this.lapTimer.elapsed; }
+        }
+        public int fastestLapTime { get; private set; }
 
         public LapManager(int lapCount, string raceType, Action onNewLapCallback, Action onRaceFinishedCallback)
         {
             this.count = lapCount;
-            this.current = 1;
+            this.current = 0;
             this.type = raceType;
 
             this.onNewLapCallback = onNewLapCallback;
             this.onRaceFinishedCallback = onRaceFinishedCallback;
+        }
+
+        public void AddLap()
+        {
+            this.UpdateFastestLapTime();
+            this.lapTimer.Reset();
+
+            this.current += 1;
+
+            this.onNewLapCallback();
         }
 
         public void EndCurrentLap()
@@ -44,8 +61,7 @@ namespace CustomTimeTrials.TimeTrialState
                 }
                 else
                 {
-                    this.current += 1;
-                    this.onNewLapCallback();
+                    this.AddLap();
                 }
             }
             else
@@ -58,11 +74,20 @@ namespace CustomTimeTrials.TimeTrialState
         {
             if (this.isCircuit)
             {
-                return string.Format("{0}/{1}", this.current, this.count);
+                int showLap = (this.current != 0) ? this.current : 1; 
+                return string.Format("{0}/{1}", showLap, this.count);
             }
             else
             {
                 return "N/A";
+            }
+        }
+
+        public void UpdateFastestLapTime()
+        {
+            if (this.current == 1 || this.currentLapTime < this.fastestLapTime)
+            {
+                this.fastestLapTime = this.currentLapTime;
             }
         }
     }

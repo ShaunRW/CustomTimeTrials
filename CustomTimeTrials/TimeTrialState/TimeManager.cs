@@ -32,15 +32,20 @@ namespace CustomTimeTrials.TimeTrialState
             this.start = this.now;
         }
 
-        public string Format(bool includeMilliseconds = false)
+        public string ToString(bool includeMilliseconds=false)
+        {
+            return TimeManager.Format(this.elapsed, includeMilliseconds);
+        }
+
+        public static string Format(int milliseconds, bool includeMilliseconds=false)
         {
             if (includeMilliseconds)
             {
-                return TimeSpan.FromMilliseconds(this.elapsed).ToString((@"mm\:ss\:fff"));
+                return TimeSpan.FromMilliseconds(milliseconds).ToString((@"mm\:ss\:fff"));
             }
             else
             {
-                return TimeSpan.FromMilliseconds(this.elapsed).ToString((@"mm\:ss"));
+                return TimeSpan.FromMilliseconds(milliseconds).ToString((@"mm\:ss"));
             }
         }
     }
