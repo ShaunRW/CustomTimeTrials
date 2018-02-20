@@ -1,4 +1,4 @@
-# Custom Time Trials v0.1.0 #
+# Custom Time Trials v0.2.0 #
 Adds a new time trial racing mode to GTA V. Also includes an editor to create the time trials.
 
 
@@ -25,11 +25,8 @@ Copy the following items into the 'Grand Theft Auto V/scripts' directory.
 
 ### Todo: ###
 
-##### Planned for v0.2.0: #####
-* ~Show time of current lap on the hud.~
-* ~Show fastest laptime this race on the hud.~
-
 ##### Planned for v1.0.0 #####
+* Add Full Race Results and Parameters to the finish notification.
 * Record Race Results for stats purposes. Such as fasted time on this time trial.
 
 ##### Planned: #####
@@ -44,3 +41,9 @@ Copy the following items into the 'Grand Theft Auto V/scripts' directory.
 
 * With traffic set to off, a very small number of vehicles still spawn. Might need to remove them on the fly every so many frames.
 
+
+
+### Change Log ###
+
+##### v0.2.0 #####
+* Current Lap Time and Fastest Lap Time are now displayed on the HUD.
