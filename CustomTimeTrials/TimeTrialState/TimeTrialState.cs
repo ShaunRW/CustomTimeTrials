@@ -161,6 +161,7 @@ namespace CustomTimeTrials.TimeTrialState
             this.innerState = InternalState.Race;
             this.player.UnfreezePlayer();
             this.time = new TimeManager();
+            this.lapManager.AddLap();
             this.audioManager.PlayRaceBeginSound();
         }
 

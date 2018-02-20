@@ -22,19 +22,19 @@ namespace CustomTimeTrials.TimeTrialState
         }
 
         private Action onRaceFinishedCallback;
-        private Action onNewLapCallback; 
+        private Action onNewLapCallback;
 
         public LapManager(int lapCount, string raceType, Action onNewLapCallback, Action onRaceFinishedCallback)
         {
             this.count = lapCount;
-            this.current = 1;
+            this.current = 0;
             this.type = raceType;
 
             this.onNewLapCallback = onNewLapCallback;
             this.onRaceFinishedCallback = onRaceFinishedCallback;
         }
 
-        private void AddLap()
+        public void AddLap()
         {
             this.current += 1;
 
