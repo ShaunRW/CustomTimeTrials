@@ -148,12 +148,17 @@ namespace CustomTimeTrials.TimeTrialState
              * Setup Hud.
              *  - Should this be here or in the constructor.
              */
-            this.HUD.SetupTimeHud();
+            
             if (this.lapManager.isCircuit)
             {
-                this.HUD.SetupLapTimeHud();
                 this.HUD.SetupFastestLapTimeHud();
-                this.HUD.SetupLapHud(this.lapManager.ToString());
+                this.HUD.SetupLapTimeHud();
+                this.HUD.SetupTimeHud();
+                this.HUD.SetupLapHud(this.lapManager.ToString());  
+            }
+            else
+            {
+                this.HUD.SetupTimeHud();
             }
         }
         
