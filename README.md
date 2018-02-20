@@ -26,8 +26,8 @@ Copy the following items into the 'Grand Theft Auto V/scripts' directory.
 ### Todo: ###
 
 ##### Planned for v0.2.0: #####
-* Show time of current lap on the hud.
-* Show fastest laptime this race on the hud.
+* ~Show time of current lap on the hud.~
+* ~Show fastest laptime this race on the hud.~
 
 ##### Planned for v1.0.0 #####
 * Record Race Results for stats purposes. Such as fasted time on this time trial.
