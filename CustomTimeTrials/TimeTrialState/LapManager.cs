@@ -34,6 +34,17 @@ namespace CustomTimeTrials.TimeTrialState
             this.onRaceFinishedCallback = onRaceFinishedCallback;
         }
 
+        private void AddLap()
+        {
+            this.current += 1;
+
+            // Get lap time.
+            // compare with fastest laptime and set new fastest if needed.
+            // reset laptimer
+
+            this.onNewLapCallback();
+        }
+
         public void EndCurrentLap()
         {
             if (this.isCircuit)
@@ -44,8 +55,7 @@ namespace CustomTimeTrials.TimeTrialState
                 }
                 else
                 {
-                    this.current += 1;
-                    this.onNewLapCallback();
+                    this.AddLap();
                 }
             }
             else
