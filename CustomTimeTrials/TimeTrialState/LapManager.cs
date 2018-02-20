@@ -68,7 +68,8 @@ namespace CustomTimeTrials.TimeTrialState
         {
             if (this.isCircuit)
             {
-                return string.Format("{0}/{1}", this.current, this.count);
+                int showLap = (this.current != 0) ? this.current : 1; 
+                return string.Format("{0}/{1}", showLap, this.count);
             }
             else
             {
