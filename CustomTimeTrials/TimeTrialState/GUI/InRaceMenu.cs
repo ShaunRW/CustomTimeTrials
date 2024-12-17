@@ -12,10 +12,11 @@ namespace CustomTimeTrials.TimeTrialState.GUI
     {
         private NativeMenu.Menu menu;
 
-        public InRaceMenu(Action onMenuExitCallback, Action onRestartCallback, Action onExitCallback)
+        public InRaceMenu(Action onMenuExitCallback, Action onRespawnCallback, Action onRestartCallback, Action onExitCallback)
         {
             this.menu = new NativeMenu.Menu("Custom Time Trials", "In Race Menu", onMenuExitCallback);
 
+            this.menu.AddButton("Respawn at Last Checkpoint", onRespawnCallback);
             this.menu.AddButton("Restart", onRestartCallback);
             this.menu.AddButton("Exit Time Trial", onExitCallback);
 

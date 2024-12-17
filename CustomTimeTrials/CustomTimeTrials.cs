@@ -15,7 +15,7 @@ using CustomTimeTrials.InactiveState;
 namespace CustomTimeTrials
 {
     public class CustomTimeTrials : Script
-    {
+    { 
 
         private StateMachine.StateMachine stateMachine;
 

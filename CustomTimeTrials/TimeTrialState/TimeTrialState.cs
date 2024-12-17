@@ -43,7 +43,7 @@ namespace CustomTimeTrials.TimeTrialState
             this.setup = setup;
 
             // In Race Menu
-            this.inRaceMenu = new GUI.InRaceMenu(this.onInRaceMenuExit, this.RestartTimeTrial, this.ExitTimeTrial);
+            this.inRaceMenu = new GUI.InRaceMenu(this.onInRaceMenuExit, this.SpawnAtLastCheckpoint, this.RestartTimeTrial, this.ExitTimeTrial);
 
             // setup the time trial
             this.SetupTimeTrial();
@@ -249,6 +249,13 @@ namespace CustomTimeTrials.TimeTrialState
              *  but since we don't want anything to happen we leave this empty.
              */
         private void onInRaceMenuExit() { }
+
+        private void SpawnAtLastCheckpoint()
+        {
+            this.messager.Notify("Spawned at last checkpoint", true);
+            Checkpoint lastCheckpoint = this.checkpointManager.GetLastCheckpoint();
+            this.player.MoveVehicleTo(lastCheckpoint.position, this.timeTrialData.start.rotation.ToGtaVector3());
+        }
 
         private void RestartTimeTrial()
         {

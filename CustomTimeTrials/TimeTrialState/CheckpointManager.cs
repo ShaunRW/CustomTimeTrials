@@ -124,6 +124,11 @@ namespace CustomTimeTrials.TimeTrialState
             this.GetByIndex(this.NextTargetIndex()).CreateGTABlip(scale);
         }
 
+        public Checkpoint GetLastCheckpoint()
+        {
+            return this.GetByIndex(this.targetIndex-1);
+        }
+
         public void Update(bool isOnLastLap)
         {
 
