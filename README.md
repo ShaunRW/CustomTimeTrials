@@ -14,7 +14,7 @@ Adds a new time trial racing mode to GTA V. Also includes an editor to create th
 Copy the following items into the 'Grand Theft Auto V/scripts' directory.
 * CustomTimeTrials.dll file.
 * Newtonsoft.json.dll file.
-* TimeTrials folder.
+* TimeTrials folder. (This must contain atleast valid json file to prevent a crash. Use example.json as a placeholder. As soon as you have created a custom time trial, then you may remove the example.json file.)
 
 
 ### How to use: ###
