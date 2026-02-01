@@ -57,6 +57,7 @@ namespace CustomTimeTrials.TimeTrialState
             {
                 if (this.onLast)
                 {
+                    this.UpdateFastestLapTime();
                     this.onRaceFinishedCallback();
                 }
                 else
@@ -66,6 +67,7 @@ namespace CustomTimeTrials.TimeTrialState
             }
             else
             {
+                this.UpdateFastestLapTime();
                 this.onRaceFinishedCallback();
             }
         }

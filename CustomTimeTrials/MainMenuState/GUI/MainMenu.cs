@@ -16,7 +16,11 @@ namespace CustomTimeTrials.MainMenuState.GUI
         {
             this.menu = new NativeMenu.Menu("Custom Time Trials", "Main Menu", onMenuExitCallback);
 
-            this.menu.AddListButton("Start Time Trial", this.GetTimeTrialList(), onStartTimeTrialCallback);
+            List<dynamic> timeTrialList = this.GetTimeTrialList();
+            if (timeTrialList.Count > 0)
+            {
+                this.menu.AddListButton("Start Time Trial", timeTrialList, onStartTimeTrialCallback);
+            }
             this.menu.AddButton("Time Trial Editor", onStartEditorCallback);
 
             this.menu.Show();
@@ -35,7 +39,13 @@ namespace CustomTimeTrials.MainMenuState.GUI
         private List<dynamic> GetTimeTrialList(bool includeExtension = false)
         {
             List<dynamic> races = new List<dynamic>();
-            string[] files = System.IO.Directory.GetFiles("scripts/TimeTrials");
+            string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string targetDir = System.IO.Path.Combine(documentsPath, "Rockstar Games", "GTAV-CustomTimeTrials", "TimeTrials");
+            if (!System.IO.Directory.Exists(targetDir))
+            {
+                System.IO.Directory.CreateDirectory(targetDir);
+            }
+            string[] files = System.IO.Directory.GetFiles(targetDir);
             foreach (string file in files)
             {
                 if (includeExtension)

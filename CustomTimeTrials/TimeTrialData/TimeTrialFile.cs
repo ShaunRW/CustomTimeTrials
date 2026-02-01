@@ -35,7 +35,13 @@ namespace CustomTimeTrials.TimeTrialData
 
         private string GeneratePath(string filename)
         {
-            return string.Format("scripts/TimeTrials/{0}.{1}", filename, this.fileExtension);
+            string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string targetDir = System.IO.Path.Combine(documentsPath, "Rockstar Games", "GTAV-CustomTimeTrials", "TimeTrials");
+            if (!System.IO.Directory.Exists(targetDir))
+            {
+                System.IO.Directory.CreateDirectory(targetDir);
+            }
+            return System.IO.Path.Combine(targetDir, string.Format("{0}.{1}", filename, this.fileExtension));
         }
     }
 }

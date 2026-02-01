@@ -37,7 +37,7 @@ namespace CustomTimeTrials.RecordData
         {
             if (this.recordData.records.ContainsKey(raceName))
             {
-                if (lapCount > 0 && this.recordData.records[raceName].fastestTimes.ContainsKey(lapCount))
+                if (lapCount > -1 && this.recordData.records[raceName].fastestTimes.ContainsKey(lapCount))
                 {
                     return new CurrentRecord()
                     {
@@ -66,7 +66,7 @@ namespace CustomTimeTrials.RecordData
 
             var raceRecord = this.recordData.records[raceName];
 
-            if (lapCount > 0)
+            if (lapCount > -1)
             {
                 if (!raceRecord.fastestTimes.ContainsKey(lapCount))
                 {

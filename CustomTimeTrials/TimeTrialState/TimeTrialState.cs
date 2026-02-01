@@ -254,7 +254,9 @@ namespace CustomTimeTrials.TimeTrialState
 
             string averageLapTime = (this.lapManager.count > 0) ? TimeManager.Format(this.time.elapsed / this.lapManager.count, true) : "";
 
-            CurrentRecord record = recordsFile.getRaceRecord(this.timeTrialData.displayName, this.lapManager.count);
+            int lapCount = this.lapManager.isCircuit ? this.lapManager.count : 0;
+
+            CurrentRecord record = recordsFile.getRaceRecord(this.timeTrialData.displayName, lapCount);
 
             bool hasNewRecord = false;
             if (this.time.elapsed < record.fastestTime)
@@ -264,7 +266,7 @@ namespace CustomTimeTrials.TimeTrialState
                 hasNewRecord = true;
             }
 
-            if (this.lapManager.fastestLapTime < record.fastestLapTime)
+            if (this.lapManager.isCircuit && this.lapManager.fastestLapTime < record.fastestLapTime)
             {
                 this.messager.Notify("New Record! Fastest Lap Time!", true);
                 record.fastestLapTime = this.lapManager.fastestLapTime;
@@ -273,7 +275,8 @@ namespace CustomTimeTrials.TimeTrialState
 
             if (hasNewRecord)
             {
-                recordsFile.updateRecord(this.timeTrialData.displayName, this.lapManager.count, record.fastestTime, record.fastestLapTime);
+                
+                recordsFile.updateRecord(this.timeTrialData.displayName, lapCount, record.fastestTime, record.fastestLapTime);
             }
 
             // Play audio and display notifications

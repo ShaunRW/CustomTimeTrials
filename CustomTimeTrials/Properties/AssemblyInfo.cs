@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ShaunRW")]
 [assembly: AssemblyProduct("CustomTimeTrials")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
+[assembly: AssemblyCopyright("Copyright ©  2026")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -28,4 +28,4 @@ using System.Runtime.InteropServices;
 //      Minor Version: New features / bug fixes. Will be compatible with datafiles generated from within this major version.
 //      bugfix Version: No new features. Just non intrusive bug fixes.
 
-[assembly: AssemblyVersion("0.3.0.*")]
+[assembly: AssemblyVersion("0.4.0.*")]
