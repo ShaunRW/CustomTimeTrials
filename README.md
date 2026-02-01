@@ -37,7 +37,7 @@ Copy the following items into the 'Grand Theft Auto V/scripts' directory.
 
 
 ### Known Bugs: ###
-
+* Spawn at last checkpoint crashes the mod.
 * With traffic set to off, a very small number of vehicles still spawn. Might need to remove them on the fly every so many frames.
 
 
