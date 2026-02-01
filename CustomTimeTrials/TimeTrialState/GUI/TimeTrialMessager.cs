@@ -29,10 +29,28 @@ namespace CustomTimeTrials.TimeTrialState.GUI
             BigMessageThread.MessageInstance.ShowSimpleShard(title, msg, duration);
         }
 
-        public void ShowFinishedNotification(string raceName, string finalTime, int lapCount = 0)
+        public void ShowFinishedNotification(string raceName, string fastestLapTime, string averageLapTime, string finalTime, int lapCount = 0)
         {
-            string laps = (lapCount > 0) ? string.Format("  Laps: ~b~{0}\n~w~", lapCount) : "";
-            string notification = string.Format("{0}:\n{1}  Final Time: ~b~{2}", raceName, laps, finalTime);
+            // Build the lap details string if lapCount is greater than zero.
+            string lapsInfo = (lapCount > 0)
+                ? string.Format("  Laps: ~b~{0}\n~w~", lapCount)
+                : "";
+
+            // Add fastest and average lap times if laps are counted.
+            string lapTimesInfo = (lapCount > 0)
+                ? string.Format("  Fastest Lap: ~b~{0}\n~w~  Average Lap: ~b~{1}\n~w~", fastestLapTime, averageLapTime)
+                : "";
+
+            // Combine all information into the notification message.
+            string notification = string.Format(
+                "{0}:\n{1}{2}  Final Time: ~b~{3}",
+                raceName,
+                lapsInfo,
+                lapTimesInfo,
+                finalTime
+            );
+
+            // Display the notification.
             this.Notify(notification);
         }
 

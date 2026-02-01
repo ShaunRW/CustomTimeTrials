@@ -24,7 +24,7 @@ namespace CustomTimeTrials.InactiveState
         {
             bool justPressed = this.keyPressTracker.update(e.KeyCode, true);
 
-            if (justPressed && e.KeyCode == Keys.F9)
+            if (justPressed && e.KeyCode == Keys.F10)
             {
                 // Change State to main menu state.
                 return new MainMenuState.MainMenuState();

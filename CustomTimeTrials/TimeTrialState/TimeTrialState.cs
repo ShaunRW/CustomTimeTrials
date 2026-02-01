@@ -81,7 +81,7 @@ namespace CustomTimeTrials.TimeTrialState
         {
             bool justPressed = this.keyPressTracker.update(e.KeyCode, true);
 
-            if (justPressed && e.KeyCode == Keys.F9)
+            if (justPressed && e.KeyCode == Keys.F10)
             {
                 this.inRaceMenu.Toggle();
             }
@@ -231,13 +231,37 @@ namespace CustomTimeTrials.TimeTrialState
             this.HUD.SetFastestTime(TimeManager.Format(this.lapManager.fastestLapTime));
         }
 
-        private void onFinish()
+        /*private void onFinish()
         {
             // do something with the race data
             string time = this.time.ToString(true);
             this.audioManager.PlayRaceFinishedSound();
             this.messager.ShowFinishedScreen("Finished", time);
             this.messager.ShowFinishedNotification( this.timeTrialData.displayName, time, this.lapManager.count);
+
+            this.ExitTimeTrial();
+        }*/
+
+        private void onFinish()
+        {
+            // Retrieve race times
+            string totalTime = this.time.ToString(true);
+            string fastestLapTime = TimeManager.Format(this.lapManager.fastestLapTime);
+
+            string averageLapTime = (this.lapManager.count > 0) ? TimeManager.Format(this.time.elapsed / this.lapManager.count, true) : "";
+
+            // Play audio and display notifications
+            this.audioManager.PlayRaceFinishedSound();
+
+            // Display final messages
+            this.messager.ShowFinishedScreen("Race Completed", totalTime);
+            this.messager.ShowFinishedNotification(
+                this.timeTrialData.displayName,
+                fastestLapTime,
+                averageLapTime,
+                totalTime,
+                this.lapManager.count
+            );
 
             this.ExitTimeTrial();
         }

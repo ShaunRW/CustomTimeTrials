@@ -1,0 +1,20 @@
+{
+  "displayName": "Example Trial",
+  "type": "lap",
+  "start": {
+    "position": { "X": 0.0, "Y": 0.0, "Z": 0.0 },
+    "rotation": { "X": 0.0, "Y": 0.0, "Z": 0.0 }
+  },
+  "checkpoints": [
+    { "X": 10.0, "Y": 0.0, "Z": 0.0 },
+    { "X": 20.0, "Y": 10.0, "Z": 0.0 }
+  ],
+  "records": [
+    {
+      "totalTime": 123.45,
+      "fastestLapTime": 60.12,
+      "lapCount": 2,
+      "vehicleName": "Adder"
+    }
+  ]
+}
