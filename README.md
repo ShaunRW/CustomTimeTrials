@@ -44,6 +44,9 @@ Copy the following items into the 'Grand Theft Auto V/scripts' directory.
 
 ### Change Log ###
 
+##### v0.5.0 #####
+* Player Vehicle is fixed before every race.
+
 ##### v0.4.0 #####
 * Moved TimeTrials folder to the Documents folder to move them out of the protected GTA V directory.
 

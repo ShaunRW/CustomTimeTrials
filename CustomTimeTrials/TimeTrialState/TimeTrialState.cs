@@ -145,6 +145,7 @@ namespace CustomTimeTrials.TimeTrialState
              */
             this.player.CantDie();
             this.player.MoveVehicleTo(this.timeTrialData.start.position.ToGtaVector3(), this.timeTrialData.start.rotation.ToGtaVector3());
+            this.player.FixVehicleIfDamaged();
             this.player.SetVehicleDamageOn(this.setup.vehicleDamageOn);
 
 

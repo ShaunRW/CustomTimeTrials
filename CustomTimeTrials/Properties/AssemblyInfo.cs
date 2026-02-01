@@ -28,4 +28,4 @@ using System.Runtime.InteropServices;
 //      Minor Version: New features / bug fixes. Will be compatible with datafiles generated from within this major version.
 //      bugfix Version: No new features. Just non intrusive bug fixes.
 
-[assembly: AssemblyVersion("0.4.0.*")]
+[assembly: AssemblyVersion("0.5.0.*")]
