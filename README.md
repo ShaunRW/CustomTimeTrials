@@ -27,7 +27,6 @@ Copy the following items into the 'Grand Theft Auto V/scripts' directory.
 
 ##### Planned for v1.0.0 #####
 * Add Full Race Results and Parameters to the finish notification.
-* Record Race Results for stats purposes. Such as fasted time on this time trial.
 
 ##### Planned: #####
 * Add Race Option for police. eg, Disabled, Allowed, Always [1-5] star.
@@ -44,6 +43,15 @@ Copy the following items into the 'Grand Theft Auto V/scripts' directory.
 
 
 ### Change Log ###
+
+##### v0.4.0 #####
+* Moved TimeTrials folder to the Documents folder to move them out of the protected GTA V directory.
+
+##### v0.3.1 #####
+* Fixed issue where Fastest Time and Fastest Lap Time was getting stored correctly for sprint time trials.
+
+##### v0.3.0 #####
+* Fastest Time and Fastest Lap time is now stored and updatable
 
 ##### v0.2.0 #####
 * Current Lap Time and Fastest Lap Time are now displayed on the HUD.
