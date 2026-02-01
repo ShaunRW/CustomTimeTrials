@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CustomTimeTrials.RecordData;
 using CustomTimeTrials.StateMachine;
 using CustomTimeTrials.TimeTrialData;
 
@@ -35,6 +36,7 @@ namespace CustomTimeTrials.TimeTrialState
         private GUI.TimeTrialHUD HUD = new GUI.TimeTrialHUD();
         private GUI.InRaceMenu inRaceMenu;
 
+        private RecordsFile recordsFile = new RecordsFile();
 
         public TimeTrialState(TimeTrialData.TimeTrialSaveData data, TimeTrialData.SetupData setup)
         {
@@ -116,6 +118,8 @@ namespace CustomTimeTrials.TimeTrialState
              */
             this.lapManager = new LapManager(this.setup.lapCount, this.timeTrialData.type, this.onNewLap, this.onFinish);
             
+            recordsFile.load();
+
             // Load Checkpoints
             this.checkpointManager = new CheckpointManager(this.onCheckpointReached, this.onLapComplete);
             this.checkpointManager.Load(this.timeTrialData);
@@ -249,6 +253,28 @@ namespace CustomTimeTrials.TimeTrialState
             string fastestLapTime = TimeManager.Format(this.lapManager.fastestLapTime);
 
             string averageLapTime = (this.lapManager.count > 0) ? TimeManager.Format(this.time.elapsed / this.lapManager.count, true) : "";
+
+            CurrentRecord record = recordsFile.getRaceRecord(this.timeTrialData.displayName, this.lapManager.count);
+
+            bool hasNewRecord = false;
+            if (this.time.elapsed < record.fastestTime)
+            {
+                this.messager.Notify("New Record! Fastest Time!", true);
+                record.fastestTime = this.time.elapsed;
+                hasNewRecord = true;
+            }
+
+            if (this.lapManager.fastestLapTime < record.fastestLapTime)
+            {
+                this.messager.Notify("New Record! Fastest Lap Time!", true);
+                record.fastestLapTime = this.lapManager.fastestLapTime;
+                hasNewRecord = true;
+            }
+
+            if (hasNewRecord)
+            {
+                recordsFile.updateRecord(this.timeTrialData.displayName, this.lapManager.count, record.fastestTime, record.fastestLapTime);
+            }
 
             // Play audio and display notifications
             this.audioManager.PlayRaceFinishedSound();

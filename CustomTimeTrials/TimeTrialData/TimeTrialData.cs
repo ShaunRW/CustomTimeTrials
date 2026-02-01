@@ -33,20 +33,11 @@ namespace CustomTimeTrials.TimeTrialData
         public SimpleVector3 rotation;
     }
 
-    struct TimeTrialRecordData
-    {
-        public float totalTime;
-        public float fastestLapTime;
-        public int lapCount;
-        public string vehicleName;
-    }
-
     class TimeTrialSaveData
     {
         public string displayName;
         public string type;
         public TimeTrialStartData start;
         public List<SimpleVector3> checkpoints = new List<SimpleVector3>();
-        public List<TimeTrialRecordData> records = new List<TimeTrialRecordData>();
     }
 }
